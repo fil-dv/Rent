@@ -19,11 +19,14 @@ namespace Domain.Entities
         public string ContactaPhone1 { get; set; }
         public string ContactaPhone2 { get; set; }
         public string ContactaPhone3 { get; set; }
-        public string LegalAddress { get; set; }
-        public string RentAreaAddress { get; set; }
+        public string LegalAddressRegion { get; set; }
+        public string LegalAddressCity { get; set; }
+        public string LegalAddressStreet { get; set; }
+        public string RentAreaAddressRegion { get; set; }
+        public string RentAreaAddressCity { get; set; }
+        public string RentAreaAddressStreet { get; set; }
         public decimal SquareArea { get; set; }        
         public decimal MonthPrice { get; set; }
-        public bool IsBooking { get; set; }
         public bool IsAvailable { get; set; }
         public int Rating { get; set; }
         public decimal Latitude { get; set; }

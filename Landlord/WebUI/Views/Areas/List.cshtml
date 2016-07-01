@@ -2,13 +2,15 @@
 @model IEnumerable<Area>
 
 @{
-    ViewBag.Title = "Площади под аренду";
+    ViewBag.Title = "Аренда";
 }
+
+<img src="..\Content\Images\0001.jpg">
 
 @foreach (Area item in Model)
 {
     <div>
-        <h3 accept-charset="UTF-8">@item.ContactaName</h3>
+        <h3>@item.ContactaName</h3>
         <h2>@item.ContactaPhone1</h2>
         <h1>@item.MonthPrice</h1>
     </div>
