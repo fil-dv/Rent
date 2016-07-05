@@ -1,0 +1,47 @@
+namespace Domain.Concrete
+{
+    using Domain.Entities;
+    using System;
+    using System.Data.Entity;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+    using Entities.Identity;
+    public partial class EFDbContext : DbContext
+    {
+        public EFDbContext()
+            : base("name=EFDbContext")
+        {
+        }
+
+        public virtual DbSet<Area> Areas { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Area>()
+                .Property(e => e.SquareArea)
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Area>()
+                .Property(e => e.MonthPrice)
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<Area>()
+                .Property(e => e.Latitude)
+                .HasPrecision(16, 4);
+
+            modelBuilder.Entity<Area>()
+                .Property(e => e.Longitude)
+                .HasPrecision(16, 4);
+         
+            modelBuilder.Entity<Photo>()
+                .Property(e => e.Latitude)
+                .HasPrecision(16, 4);
+
+            modelBuilder.Entity<Photo>()
+                .Property(e => e.Longitude)
+                .HasPrecision(16, 4);
+        }
+    }
+}

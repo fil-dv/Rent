@@ -7,18 +7,22 @@ using System.Web.Mvc;
 
 namespace WebUI.Controllers
 {
+    [Authorize]
     public class AreasController : Controller
     {
-        IAreaRepository _repository;
+        IAreaRepository _repoArea;
+        IPhotoRepository _repoPhoto;
 
-        public AreasController(IAreaRepository repository)
+        public AreasController(IAreaRepository repository, IPhotoRepository repoPhoto)
         {
-            _repository = repository;
+            _repoArea = repository;
+            _repoPhoto = repoPhoto;
         }
 
         public ViewResult List()
         {
-            return View(_repository.Areas);
+            //ViewBag["photo"] = _repoPhoto;
+            return View(_repoArea.Areas);
         }
     }
 }

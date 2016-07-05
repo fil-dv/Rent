@@ -11,7 +11,7 @@ namespace Domain.Entities
     /// DB entitie
     /// </summary>
 
-    public class Area
+    public class Area 
     {
         public int AreaID { get; set; }
         public string OwnerName { get; set; }
@@ -29,7 +29,7 @@ namespace Domain.Entities
         public decimal MonthPrice { get; set; }
         public bool IsAvailable { get; set; }
         public int Rating { get; set; }
-        public decimal Latitude { get; set; }
-        public decimal Longitude { get; set; }        
+        public decimal? Latitude { get; set; }
+        public decimal? Longitude { get; set; }        
     }
 }

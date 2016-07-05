@@ -21,4 +21,11 @@ D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\ru\System.Web.We
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\ru\System.Web.WebPages.Razor.resources.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.pdb
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\Domain.dll.config
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\EntityFramework.dll
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\EntityFramework.SqlServer.dll
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\EntityFramework.xml
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\EntityFramework.SqlServer.xml
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.Migrations.DataMigration.resources
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.csproj.GenerateResource.Cache
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache

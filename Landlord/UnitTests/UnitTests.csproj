@@ -117,10 +117,6 @@
       <Project>{00877f53-6c03-41d1-9a32-a29d2fd19e39}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebUI\WebUI.csproj">
-      <Project>{2972af3f-77ce-4080-b65d-3da603bd2346}</Project>
-      <Name>WebUI</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
