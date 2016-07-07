@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Domain.Concrete.Identity;
+using Domain.Concrete.Repositories.Identity;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
+//using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
+//using Owin;
 using System;
-using WebUI.Models.Identity;
 
-[assembly: OwinStartupAttribute(typeof(Web_UI.Startup))]
+
 namespace Web_UI
 {
     public class Startup

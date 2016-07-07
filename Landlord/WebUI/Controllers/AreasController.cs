@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace WebUI.Controllers
 {
-    [Authorize]
+    
     public class AreasController : Controller
     {
         IAreaRepository _repoArea;

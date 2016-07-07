@@ -13,11 +13,12 @@ namespace WebUI.Controllers
         {
             if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
             {
-                return Url.Action("Areas", "List");
+                return Url.Action("index", "home");
             }
 
             return returnUrl;
         }
+
 
         private IAuthenticationManager GetAuthenticationManager()
         {
@@ -26,11 +27,10 @@ namespace WebUI.Controllers
         }
 
 
-        public ViewResult Login()
+        // GET: Auth
+        public ActionResult Index()
         {
             return View();
         }
-
-        
     }
 }
