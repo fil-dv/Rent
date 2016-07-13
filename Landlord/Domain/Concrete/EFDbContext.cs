@@ -5,7 +5,7 @@ namespace Domain.Concrete
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-    using Entities.Identity;
+
     public partial class EFDbContext : DbContext
     {
         public EFDbContext()
@@ -15,8 +15,7 @@ namespace Domain.Concrete
 
         public virtual DbSet<Area> Areas { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Area>()

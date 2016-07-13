@@ -10,11 +10,7 @@ namespace WebUI.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Domain.Abstract;
-    using Moq;
-    using Domain.Entities;
-    using System.Collections.Generic;
-    using Domain.Concrete.Repositories;
+
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -65,18 +61,6 @@ namespace WebUI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            //Mock<IAreaRepository> mock = new Mock<IAreaRepository>();
-            //mock.Setup(m => m.Areas).Returns(new List<Area>
-            //{
-            //    new Area { ContactaName = "Иванов Иван", MonthPrice=700, ContactaPhone1 = "0509773325"},
-            //    new Area { ContactaName = "Петров Петр", MonthPrice=900, ContactaPhone1 = "0996786566"},
-            //    new Area { ContactaName = "Николаев Николай", MonthPrice=1100, ContactaPhone1 = "0667897665"}
-            //});
-            //kernel.Bind<IAreaRepository>().ToConstant(mock.Object);
-
-            kernel.Bind<IAreaRepository>().To<EFAreaRepository>();
-            kernel.Bind<IPhotoRepository>().To<EFPhotoRepository>();
-            kernel.Bind<IUserRepository>().To<EFPUserRepository>();
-        }
+        }        
     }
 }

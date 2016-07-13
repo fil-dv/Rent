@@ -1,13 +1,160 @@
-﻿<!DOCTYPE html>
+﻿@*<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>  
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
-    <div>
-       @RenderBody()       
-    </div>   
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("АренДа", "Index", "Home", new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    
+
+</body>
+</html>*@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Theme Made By www.w3schools.com - No Copyright -->
+    <title>Аренда</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script>
+
+
+
+        $(document).ready(function () {
+            $(window).scrollTop($('#mainID').offset().top).scrollLeft($('#mainID').offset().left);
+        });
+
+        @*$(document).ready(function () {
+            $(window).scrollTop($(@ViewBag.Anchor).offset().top).scrollLeft($(@ViewBag.Anchor).offset().left);
+        });*@
+
+
+    </script>
+    
+</head>
+
+<body>
+    
+    <a style="visibility: hidden" ></a>
+    <!-- Navbar -->
+    <nav id="start" class="navbar navbar-default bg-4">
+        <div class="navbar navbar-inverse bg-4 navbar-fixed-top">
+            <div class="container bg-4">
+                <div class="navbar-header bg-4">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                  
+                </div>
+                <div class="navbar-collapse collapse bg-4">
+                    <ul class="nav navbar-nav">
+                        <li id='home'>@Html.ActionLink("Главная", "Index", "Home")</li>
+                        <li>@Html.ActionLink("О проекте", "About", "Home")</li>
+                        <li>@Html.ActionLink("Контакты", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- First Container -->
+    <div class="container-fluid bg-1 text-center">
+        <h3 class="margin">Почему стоит выбрать услуги именно нашей компании?</h3>
+        <img id='photoMain' src="../Content/Img/1005.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
+        <h3>Рызумные цены, многолетний опыт работы, быстрое оформлении документов.</h3>
+    </div>
+
+    <!-- Second Container -->
+    <div class="container-fluid bg-2 text-center">
+        <h3 class="margin">Выбор региона</h3>
+        <p>Давайте найдем то, что Вам нужно. </p>
+        <a href="#" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-search"></span> Search
+        </a>
+    </div>
+
+    <!-- Third Container (Grid) -->
+    <div id ="mainID" class="container-fluid bg-3 text-center">
+
+        <a id="main" style="visibility: hidden"></a>
+        @RenderBody()
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="container-fluid bg-4 text-center">
+        <a href="#start"><p>Дипломная работа Филоненко Дмитрия. Компьютерная академия "Шаг", 2016</p></a>
+    </footer>
+
+    
+    @RenderSection("scripts", required: false)
+    
+
+    @*<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>*@
+    
+   
+
+
 </body>
 </html>
+
+@*<script>
+
+        $( document ).ready(function() {
+            alert( "document loaded" );
+        });
+
+        $( window ).load(function() {
+            alert("Hello! I am an alert box!!");
+            window.location.href = @ViewBag.Anchor;
+        });
+</script>*@
+

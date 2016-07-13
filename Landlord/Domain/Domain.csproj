@@ -121,25 +121,11 @@
   <ItemGroup>
     <Compile Include="Abstract\IAreaRepository.cs" />
     <Compile Include="Abstract\IPhotoRepository.cs" />
-    <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
-    <Compile Include="Concrete\Identity\ApplicationDbContext.cs" />
-    <Compile Include="Concrete\Identity\AppRole.cs" />
-    <Compile Include="Concrete\Identity\AppUser.cs" />
-    <Compile Include="Concrete\Identity\CustomUserClaim.cs" />
-    <Compile Include="Concrete\Identity\CustomUserLogin.cs" />
-    <Compile Include="Concrete\Identity\CustomUserRole.cs" />
-    <Compile Include="Concrete\Identity\ViewModels\CreateRoleModel.cs" />
-    <Compile Include="Concrete\Identity\ViewModels\LogInModel.cs" />
-    <Compile Include="Concrete\Identity\ViewModels\RegisterModel.cs" />
     <Compile Include="Concrete\Repositories\EFAreaRepository.cs" />
     <Compile Include="Concrete\Repositories\EFPhotoRepository.cs" />
-    <Compile Include="Concrete\Repositories\EFUserRepository.cs" />
-    <Compile Include="Concrete\Repositories\Identity\CustomRoleStore.cs" />
-    <Compile Include="Concrete\Repositories\Identity\CustomUserStore.cs" />
     <Compile Include="Entities\Area.cs" />
     <Compile Include="Entities\Photo.cs" />
-    <Compile Include="Entities\User.cs" />
     <Compile Include="Identity\CreateRoleModel.cs" />
     <Compile Include="Identity\EditRoleModel.cs" />
     <Compile Include="Identity\LogInModel.cs" />
