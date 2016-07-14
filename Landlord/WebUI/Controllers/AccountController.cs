@@ -58,7 +58,6 @@ namespace WebUI.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            ViewBag.Anchor = "#main";
             return View();
         }
 

@@ -92,14 +92,14 @@ D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\ru\System.Web.WebPages.
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\obj\Debug\WebUI.csprojResolveAssemblyReference.cache
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\obj\Debug\WebUI.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\obj\Debug\WebUI.pdb
-D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Domain.dll
-D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Domain.pdb
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Castle.Core.dll
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Domain.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Moq.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Ninject.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Ninject.Web.Common.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Ninject.Web.Mvc.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\WebActivatorEx.dll
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Domain.pdb
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Castle.Core.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Moq.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Ninject.xml
