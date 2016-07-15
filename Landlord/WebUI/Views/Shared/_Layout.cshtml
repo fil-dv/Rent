@@ -62,25 +62,23 @@
 
     <script>
 
-
-
         $(document).ready(function () {
             $(window).scrollTop($('#mainID').offset().top).scrollLeft($('#mainID').offset().left);
         });
-
-        //$(document).on('click', 'a', function (event) {
-        //    event.preventDefault();
-
-        //    $('html, body').animate({
-        //        scrollTop: $($.attr(this, 'href')).offset().top
-        //    }, 500);
-        //});
-
-        $('a[href*=#]').on('click', function (event) {
-            event.preventDefault();
-            $('html, body').animate({
-                 scrollTop: $($.attr(this, 'href')).offset().top
-                 }, 500);
+       
+        $(function () {
+            $('a[href*=#]:not([href=#])').click(function () {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
         });
 
 
@@ -112,9 +110,9 @@
                     <ul class="nav navbar-nav">
                         <li id='home'>@Html.ActionLink("Главная", "Index", "Home")</li>
                         @*<li>@Html.ActionLink("О проекте", "About", "Home")</li>*@
-                        <li><a href="#about">О проекте</a></li>
+                        <li><a class="scroll" href="#about">О проекте</a></li>
                         @*<li>@Html.ActionLink("Контакты", "Contact", "Home")</li>*@
-                        <li><a href="#contact">Контакты</a></li>
+                        <li><a class="scroll" href="#contact">Контакты</a></li>
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
@@ -213,7 +211,7 @@
 
     <!-- Footer -->
     <footer class="container-fluid bg-4 text-center">
-        <a href="#start"><p>Дипломная работа Филоненко Дмитрия. Компьютерная академия "Шаг", 2016</p></a>
+        <a class="scroll" href="#start"><p>Дипломная работа Филоненко Дмитрия. Компьютерная академия "Шаг", 2016</p></a>
     </footer>
 
     
