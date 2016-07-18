@@ -238,6 +238,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelper.cs" />
+    <Compile Include="Migrations\201607151936161_InitialCreate.cs" />
+    <Compile Include="Migrations\201607151936161_InitialCreate.Designer.cs">
+      <DependentUpon>201607151936161_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607180933127_AddAreaTypesMigration.cs" />
+    <Compile Include="Migrations\201607180933127_AddAreaTypesMigration.Designer.cs">
+      <DependentUpon>201607180933127_AddAreaTypesMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomModels\AreaListViewModel.cs" />
     <Compile Include="Models\CustomModels\AreaWithPhoto.cs" />
@@ -325,6 +334,14 @@
       <Project>{00877f53-6c03-41d1-9a32-a29d2fd19e39}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201607151936161_InitialCreate.resx">
+      <DependentUpon>201607151936161_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607180933127_AddAreaTypesMigration.resx">
+      <DependentUpon>201607180933127_AddAreaTypesMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
