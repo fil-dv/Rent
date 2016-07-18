@@ -16,10 +16,15 @@ GO
 SET ANSI_PADDING ON
 GO
 
+CREATE TABLE AreaType(AreaTypeID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+					 Name [nvarchar](255) not null); 
+GO
 
 CREATE TABLE Areas(
 		[AreaID][int] NOT NULL IDENTITY(1,1) PRIMARY KEY,
-        [OwnerName] [nvarchar](300) NOT NULL,
+		[AreaTypeID] int not null foreign key references [dbo].AreaType(AreaTypeID),
+        [Description] [nvarchar](MAX) NOT NULL,
+		[OwnerName] [nvarchar](300) NOT NULL,
         [ContactaName] [nvarchar](300) NULL,
         [ContactaPhone1] [nvarchar](21) NOT NULL,
         [ContactaPhone2] [nvarchar](21) NULL,
@@ -44,10 +49,14 @@ GO
 CREATE TABLE Photos(PhotoID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 					AreaID int not null foreign key references [dbo].[Areas](AreaID),
 					PathToPhoto [nvarchar](255) not null,
-					PhotoName [nvarchar](255) null,
+					PhotoName [nvarchar](255) not null,
+					PhotoExtension [nvarchar](255) not null,
 					Latitude numeric(16, 4) NULL,
 					Longitude numeric(16, 4) NULL); 
 
 
+--drop table Photos;
+--drop table Areas;
+--drop table AreaType;
 
 

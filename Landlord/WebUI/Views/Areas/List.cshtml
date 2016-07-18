@@ -1,27 +1,26 @@
 ﻿@using Domain.Entities
-@model IEnumerable<Area>
+@using WebUI.Models.CustomModels
+
+@model AreaListViewModel
 
 @{
     ViewBag.Title = "Аренда";
 }
 
-@*<img src="..\Content\Images\3.jpg">*@
 
-@{int count = 0;}
-
-@foreach (Area item in Model)
+@foreach (AreaWithPhoto item in Model.AreasWithPhoto)
 {
     <div>
 
-        <h3>@item.ContactaName</h3>
-        <h2>@item.ContactaPhone1</h2>
-        <h1>@item.MonthPrice</h1>
+        <h3>ID заказа: @item.Area.AreaID</h3>
+        <h1>@item.Area.MonthPrice</h1>
         @{
-            count++;
-           // string str = "../Content/Img/" + count;
-            <img src="@String.Format("../Content/Img/{0}.jpg", count)" height="120" width="160" />
-            @*<img src="../Content/Images/136" alt="photo" height="42" width="42">*@
+            string path = @item.Photo.PathToPhoto + @item.Photo.PhotoName;
+            int i = 1;
+            <img src="@path" height="120" width="160" alt=path/>
         }
+        @*<img src="@item.Photo.PathToPhoto  "../Content/Img/"
+    @String.Format("../Content/Img/{0}.jpg", count)" height="120" width="160" />*@       
 
     </div>
     <hr />

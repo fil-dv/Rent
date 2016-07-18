@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using WebUI.Models.Paging;
+using WebUI.Models.CustomModels;
+
 
 namespace WebUI.HtmlHelpers
 {
