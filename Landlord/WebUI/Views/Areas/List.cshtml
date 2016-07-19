@@ -1,4 +1,5 @@
 ﻿@using Domain.Entities
+@using WebUI.HtmlHelpers
 @using WebUI.Models.CustomModels
 
 @model AreaListViewModel
@@ -10,20 +11,40 @@
 
 @foreach (AreaWithPhotos area in Model.AreasWithPhotosList)
 {
-    <div>
+    <div class="well">
+        <div class="row">
+            <p>
+                <strong>@area.Area.RentAreaAddressRegion, @area.Area.RentAreaAddressCity, @area.Area.RentAreaAddressStreet</strong>
+            </p>
 
-        <h3>ID заказа: @area.Area.AreaID</h3>
-        <h3>Цена месячной аренды - @area.Area.MonthPrice</h3>
-        <h3>Краткое описание - @area.Area.AreaDescription</h3>
-
-        @{
-            foreach (var item in area.Photos)
-            {
-                string path = @item.PathToPhoto + @item.PhotoName + @item.PhotoExtension;
-                <img src="@path" height="120" width="160" />
+            @{
+                foreach (var item in area.Photos)
+                {
+                    string path = @item.PathToPhoto + @item.PhotoName + @item.PhotoExtension;
+                    <img class="img-thumbnail" src="@path" height="120" width="160" />
+                }
             }
-        }
-        
+        </div>
+
+        <div class="col-xs-10">
+            <h4>
+                <strong class="pull-left">id заказа: @area.Area.AreaID</strong>
+            </h4>
+           
+
+        </div>
+        <div class="col-xs-2">
+            <h4>
+                <strong class="pull-right label label-primary">Цена месячной аренды - @area.Area.MonthPrice</strong>
+            </h4>
+        </div>           
+        <span class="lead">
+            @area.Area.AreaDescription
+        </span>
     </div>
-    <hr />
+    
 }
+
+<div class="pull-right">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("List", new { page = x }))
+</div>
