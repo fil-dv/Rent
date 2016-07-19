@@ -6,13 +6,13 @@ using System.Web;
 
 namespace WebUI.Models.CustomModels
 {
-    public class AreaWithPhoto
+    public class AreaWithPhotos
     {
         
-        public AreaWithPhoto() { }
-        public AreaWithPhoto(Area area, Photo photo) { }
+        public AreaWithPhotos() { }
+       // public AreaWithPhotos(Area area, Photo photo) { }
 
         public Area Area { get; set; }
-        public Photo Photo { get; set; }
+        public IEnumerable<Photo> Photos { get; set; }
     }
 }

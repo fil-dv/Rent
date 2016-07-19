@@ -8,7 +8,7 @@ namespace WebUI.Models.CustomModels
 {
     public class AreaListViewModel
     {
-        public IEnumerable<AreaWithPhoto> AreasWithPhoto { get; set; }
+        public IEnumerable<AreaWithPhotos> AreasWithPhotosList { get; set; }
         public PagingInfo PageInfo { get; set; }
     }
 }

@@ -8,19 +8,22 @@
 }
 
 
-@foreach (AreaWithPhoto item in Model.AreasWithPhoto)
+@foreach (AreaWithPhotos area in Model.AreasWithPhotosList)
 {
     <div>
 
-        <h3>ID заказа: @item.Area.AreaID</h3>
-        <h1>@item.Area.MonthPrice</h1>
-        @{
-            string path = @item.Photo.PathToPhoto + @item.Photo.PhotoName + ".jpg";
-            <img src="@path" height="120" width="160"/>
-        }
-        @*<img src="@item.Photo.PathToPhoto  "../Content/Img/"
-    @String.Format("../Content/Img/{0}.jpg", count)" height="120" width="160" />*@       
+        <h3>ID заказа: @area.Area.AreaID</h3>
+        <h3>Цена месячной аренды - @area.Area.MonthPrice</h3>
+        <h3>Краткое описание - @area.Area.AreaDescription</h3>
 
+        @{
+            foreach (var item in area.Photos)
+            {
+                string path = @item.PathToPhoto + @item.PhotoName + @item.PhotoExtension;
+                <img src="@path" height="120" width="160" />
+            }
+        }
+        
     </div>
     <hr />
 }

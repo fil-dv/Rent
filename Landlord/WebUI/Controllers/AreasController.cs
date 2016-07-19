@@ -23,19 +23,20 @@ namespace WebUI.Controllers
 
         public ViewResult List(int page = 1)
         {
-            List<AreaWithPhoto> areaPhotoList = new List<AreaWithPhoto>();
+            List<AreaWithPhotos> areaPhotoList = new List<AreaWithPhotos>();
 
             foreach (var area in _repoArea.Areas.OrderBy(area => area.AreaID).Skip((page - 1) * pageSize).Take(pageSize))
             {
-                AreaWithPhoto awp = new AreaWithPhoto();
+                AreaWithPhotos awp = new AreaWithPhotos();
                 awp.Area = area;
-                awp.Photo = _repoPhoto.Photos.First(ph => ph.AreaID == area.AreaID);
+                var photos = _repoPhoto.Photos.Where(ph => ph.AreaID == area.AreaID).ToList();
+                awp.Photos = photos;
                 areaPhotoList.Add(awp);
             }
 
             AreaListViewModel model = new AreaListViewModel
             {
-                AreasWithPhoto = areaPhotoList,
+                AreasWithPhotosList = areaPhotoList,
 
                 PageInfo = new PagingInfo
                 {

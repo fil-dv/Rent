@@ -240,7 +240,7 @@
     <Compile Include="HtmlHelpers\PagingHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomModels\AreaListViewModel.cs" />
-    <Compile Include="Models\CustomModels\AreaWithPhoto.cs" />
+    <Compile Include="Models\CustomModels\AreaWithPhotos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\CustomModels\PagingInfo.cs" />
