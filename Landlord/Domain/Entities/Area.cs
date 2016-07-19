@@ -14,8 +14,8 @@ namespace Domain.Entities
     public class Area 
     {
         public int AreaID { get; set; }
-        //public int AreaTypeID { get; set; }
-        //public string AreaDescription { get; set; }
+        public int AreaTypeID { get; set; }
+        public string AreaDescription { get; set; }
         public string OwnerName { get; set; }
         public string ContactaName { get; set; }
         public string ContactaPhone1 { get; set; }

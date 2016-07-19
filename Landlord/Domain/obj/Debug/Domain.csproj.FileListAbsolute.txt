@@ -26,8 +26,6 @@ D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\EntityFramework.
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\EntityFramework.SqlServer.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\EntityFramework.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\EntityFramework.SqlServer.xml
-D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.Migrations.DataMigration.resources
-D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.csproj.GenerateResource.Cache
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
@@ -48,3 +46,6 @@ D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\Microsoft.Owin.S
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\Microsoft.Owin.Security.Cookies.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\bin\Debug\Newtonsoft.Json.xml
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.Migrations.InitialOwnDB.resources
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.csproj.GenerateResource.Cache
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.Migrations.AddAreaTypeTable.resources

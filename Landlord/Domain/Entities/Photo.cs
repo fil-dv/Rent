@@ -12,7 +12,7 @@ namespace Domain.Entities
         public int AreaID { get; set; }
         public string PathToPhoto { get; set; }
         public string PhotoName { get; set; }
-        //public string PhotoExtension { get; set; }
+        public string PhotoExtension { get; set; }
         public decimal? Latitude  { get; set; }
         public decimal? Longitude  { get; set; }
     }

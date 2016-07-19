@@ -125,14 +125,19 @@
     <Compile Include="Concrete\Repositories\EFAreaRepository.cs" />
     <Compile Include="Concrete\Repositories\EFPhotoRepository.cs" />
     <Compile Include="Entities\Area.cs" />
+    <Compile Include="Entities\AreaType.cs" />
     <Compile Include="Entities\Photo.cs" />
     <Compile Include="Identity\CreateRoleModel.cs" />
     <Compile Include="Identity\EditRoleModel.cs" />
     <Compile Include="Identity\LogInModel.cs" />
     <Compile Include="Identity\RegisterModel.cs" />
-    <Compile Include="Migrations\201607041958135_DataMigration.cs" />
-    <Compile Include="Migrations\201607041958135_DataMigration.Designer.cs">
-      <DependentUpon>201607041958135_DataMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201607182054395_InitialOwnDB.cs" />
+    <Compile Include="Migrations\201607182054395_InitialOwnDB.Designer.cs">
+      <DependentUpon>201607182054395_InitialOwnDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607182112030_AddAreaTypeTable.cs" />
+    <Compile Include="Migrations\201607182112030_AddAreaTypeTable.Designer.cs">
+      <DependentUpon>201607182112030_AddAreaTypeTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,11 +149,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201607041958135_DataMigration.resx">
-      <DependentUpon>201607041958135_DataMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607182054395_InitialOwnDB.resx">
+      <DependentUpon>201607182054395_InitialOwnDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607182112030_AddAreaTypeTable.resx">
+      <DependentUpon>201607182112030_AddAreaTypeTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
