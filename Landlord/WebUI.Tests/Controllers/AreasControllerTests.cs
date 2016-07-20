@@ -6,6 +6,7 @@ using Domain.Entities;
 using System.Collections.Generic;
 using WebUI.Controllers;
 using System.Linq;
+using WebUI.Models.CustomModels;
 
 namespace WebUI.Tests.Controllers
 {
@@ -30,11 +31,42 @@ namespace WebUI.Tests.Controllers
 
             AreasController controller = new AreasController(mockArea.Object, mockPhoto.Object);
             controller.pageSize = 3;
-            IEnumerable<Area> result = (IEnumerable<Area>)controller.List(3).Model;
-            List<Area> areas = result.ToList();
+            AreaListViewModel result = (AreaListViewModel)controller.List(null, 3).Model;
+            List<AreaWithPhotos> areas = result.AreasWithPhotosList.ToList();
+            
 
             Assert.IsTrue(areas.Count == 1);
-            Assert.AreEqual(areas[0].ContactaName, "name_7");
+            Assert.AreEqual(areas[0].Area.ContactaName, "name_7");
+        }
+
+        [TestMethod]
+        public void CanFilterByRegion()
+        {
+            Mock<IAreaRepository> mockArea = new Mock<IAreaRepository>();
+            Mock<IPhotoRepository> mockPhoto = new Mock<IPhotoRepository>();
+            mockArea.Setup(m => m.Areas).Returns(new List<Area>
+            {
+                new Area { AreaID = 1, RentAreaAddressRegion = "region_1", ContactaName = "name_1" },
+                new Area { AreaID = 2, RentAreaAddressRegion = "region_2", ContactaName = "name_2" },
+                new Area { AreaID = 3, RentAreaAddressRegion = "region_2", ContactaName = "name_3" },
+                new Area { AreaID = 4, RentAreaAddressRegion = "region_3", ContactaName = "name_4" },
+                new Area { AreaID = 5, RentAreaAddressRegion = "region_3", ContactaName = "name_5" },
+                new Area { AreaID = 6, RentAreaAddressRegion = "region_3", ContactaName = "name_6" },
+                new Area { AreaID = 7, RentAreaAddressRegion = "region_3", ContactaName = "name_7" }
+            });
+
+            AreasController controller = new AreasController(mockArea.Object, mockPhoto.Object);
+            controller.pageSize = 3;
+            AreaListViewModel result_1 = (AreaListViewModel)controller.List("region_3", 1).Model;
+            AreaListViewModel result_2 = (AreaListViewModel)controller.List("region_3", 2).Model;
+            List<AreaWithPhotos> areas_1 = result_1.AreasWithPhotosList.ToList();
+            List<AreaWithPhotos> areas_2 = result_2.AreasWithPhotosList.ToList();
+
+
+            Assert.IsTrue(areas_1.Count == 3);
+            Assert.IsTrue(areas_2.Count == 1);
+            Assert.AreEqual(areas_1[1].Area.ContactaName, "name_5");
+            Assert.AreEqual(areas_2[0].Area.ContactaName, "name_7");
         }
     }
 }

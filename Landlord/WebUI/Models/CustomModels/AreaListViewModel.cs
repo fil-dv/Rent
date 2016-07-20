@@ -10,5 +10,7 @@ namespace WebUI.Models.CustomModels
     {
         public IEnumerable<AreaWithPhotos> AreasWithPhotosList { get; set; }
         public PagingInfo PageInfo { get; set; }
+        public string CurrentRegion { get; set; }
+        public string CurrentCity { get; set; }
     }
 }

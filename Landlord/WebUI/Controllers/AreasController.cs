@@ -21,16 +21,17 @@ namespace WebUI.Controllers
             _repoPhoto = repoPhoto;
         }
 
-        public ViewResult List(int page = 1)
+        public ViewResult List(string region, int page = 1)
         {
             List<AreaWithPhotos> areaPhotoList = new List<AreaWithPhotos>();
 
-            foreach (var area in _repoArea.Areas.OrderBy(area => area.AreaID).Skip((page - 1) * pageSize).Take(pageSize))
+            foreach (var area in _repoArea.Areas.Where(r => region == null || r.RentAreaAddressRegion == region).OrderBy(area => area.AreaID).Skip((page - 1) * pageSize).Take(pageSize))
             {
                 AreaWithPhotos awp = new AreaWithPhotos();
                 awp.Area = area;
                 var photos = _repoPhoto.Photos.Where(ph => ph.AreaID == area.AreaID).ToList();
                 awp.Photos = photos;
+                
                 areaPhotoList.Add(awp);
             }
 
@@ -43,7 +44,10 @@ namespace WebUI.Controllers
                     CurrentPage = page,
                     ItemPerPage = pageSize,
                     TotalItems = _repoArea.Areas.Count()
-                }
+                },
+
+                CurrentRegion = region
+
             };
 
             return View(model);

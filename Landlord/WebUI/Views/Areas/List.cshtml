@@ -11,38 +11,7 @@
 
 @foreach (AreaWithPhotos area in Model.AreasWithPhotosList)
 {
-    <div class="well">
-        <div class="row">
-            <p>
-                <strong>@area.Area.RentAreaAddressRegion, @area.Area.RentAreaAddressCity, @area.Area.RentAreaAddressStreet</strong>
-            </p>
-
-            @{
-                foreach (var item in area.Photos)
-                {
-                    string path = @item.PathToPhoto + @item.PhotoName + @item.PhotoExtension;
-                    <img class="img-thumbnail" src="@path" height="120" width="160" />
-                }
-            }
-        </div>
-
-        <div class="col-xs-10">
-            <h4>
-                <strong class="pull-left">id заказа: @area.Area.AreaID</strong>
-            </h4>
-           
-
-        </div>
-        <div class="col-xs-2">
-            <h4>
-                <strong class="pull-right label label-primary">Цена месячной аренды - @area.Area.MonthPrice</strong>
-            </h4>
-        </div>           
-        <span class="lead">
-            @area.Area.AreaDescription
-        </span>
-    </div>
-    
+    @Html.Partial("_AreaSummary", area)    
 }
 
 <div class="pull-right">
