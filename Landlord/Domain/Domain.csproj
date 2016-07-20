@@ -126,6 +126,7 @@
     <Compile Include="Concrete\Repositories\EFPhotoRepository.cs" />
     <Compile Include="Entities\Area.cs" />
     <Compile Include="Entities\AreaType.cs" />
+    <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Photo.cs" />
     <Compile Include="Identity\CreateRoleModel.cs" />
     <Compile Include="Identity\EditRoleModel.cs" />

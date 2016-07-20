@@ -22,7 +22,7 @@ GO
 
 CREATE TABLE Areas(
 		[AreaID][int] NOT NULL IDENTITY(1,1) PRIMARY KEY,
-		[AreaTypeID] int not null foreign key references [dbo].AreaType(AreaTypeID),
+		[AreaTypeID] int not null foreign key references [dbo].AreaTypes(AreaTypeID),
         [AreaDescription] [nvarchar](MAX) NOT NULL,
 		[OwnerName] [nvarchar](300) NOT NULL,
         [ContactaName] [nvarchar](300) NULL,
