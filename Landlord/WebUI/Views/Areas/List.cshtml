@@ -15,5 +15,5 @@
 }
 
 <div class="pull-right">
-    @Html.PageLinks(Model.PageInfo, x => Url.Action("List", new { page = x }))
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("List", new { page = x, region = Model.CurrentRegion }))
 </div>

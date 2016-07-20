@@ -16,7 +16,7 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE AreaType(AreaTypeID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+CREATE TABLE AreaTypes(AreaTypeID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 					  AreaTypeName [nvarchar](255) not null); 
 GO
 

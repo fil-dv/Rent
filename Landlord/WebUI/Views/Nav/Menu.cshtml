@@ -1,0 +1,19 @@
+﻿@model IEnumerable<string>
+
+@Html.ActionLink("К общему списку", "List", "Areas", null, new {@class = "btn btn-block btn-default btn-lg"} )
+
+@foreach (var item in Model)
+{
+    @Html.RouteLink(item, new
+        {
+            controller = "Areas",
+            action = "List",
+            region = item,
+            page = 1
+        },
+        new
+        {
+            @class = "btn btn-block btn-default btn-lg"
+        }
+    )
+}

@@ -14,7 +14,7 @@ namespace WebUI.Tests.Controllers
     public class AreasControllerTests
     {
         [TestMethod]
-        public void CanPaginate()
+        public void Can_Paginate()
         {
             Mock<IAreaRepository> mockArea = new Mock<IAreaRepository>();
             Mock<IPhotoRepository> mockPhoto = new Mock<IPhotoRepository>();
@@ -40,7 +40,7 @@ namespace WebUI.Tests.Controllers
         }
 
         [TestMethod]
-        public void CanFilterByRegion()
+        public void Can_Filter_By_Region()
         {
             Mock<IAreaRepository> mockArea = new Mock<IAreaRepository>();
             Mock<IPhotoRepository> mockPhoto = new Mock<IPhotoRepository>();
