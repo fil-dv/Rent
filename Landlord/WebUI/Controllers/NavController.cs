@@ -16,8 +16,10 @@ namespace WebUI.Controllers
             _repoArea = repository;
         }
 
-        public PartialViewResult Menu()
+        public PartialViewResult Menu(string region = null)
         {
+            ViewBag.SelectedRegion = region;
+
             IEnumerable<string> regions = (_repoArea.Areas.Select(a => a.RentAreaAddressRegion).Distinct().OrderBy(x => x)).ToList();
             return PartialView(regions);
         }        

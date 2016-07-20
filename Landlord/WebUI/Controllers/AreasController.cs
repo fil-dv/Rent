@@ -43,7 +43,9 @@ namespace WebUI.Controllers
                 {
                     CurrentPage = page,
                     ItemPerPage = pageSize,
-                    TotalItems = _repoArea.Areas.Count()
+                    TotalItems = region == null ? 
+                        _repoArea.Areas.Count() : 
+                        _repoArea.Areas.Where(a => a.RentAreaAddressRegion == region).Count()
                 },
 
                 CurrentRegion = region
