@@ -232,6 +232,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AreasController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NavController.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomModels\AreaListViewModel.cs" />
     <Compile Include="Models\CustomModels\AreaWithPhotos.cs" />
+    <Compile Include="Models\CustomModels\CartViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\CustomModels\PagingInfo.cs" />
@@ -313,6 +315,7 @@
     <Content Include="Views\Areas\List.cshtml" />
     <Content Include="Views\Shared\_AreaSummary.cshtml" />
     <Content Include="Views\Nav\Menu.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

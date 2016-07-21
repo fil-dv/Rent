@@ -57,3 +57,11 @@
         .navbar-nav li a:hover {
             color: #1abc9c !important;
         }
+
+        #price{
+            margin-bottom: 5px;
+        }
+        
+        #adress{
+            margin-bottom:25px;
+        }

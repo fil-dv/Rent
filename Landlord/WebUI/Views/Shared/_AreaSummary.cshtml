@@ -2,34 +2,53 @@
 
 <div class="well">
     <div class="row">
-        <p>
-            <strong>@Model.Area.RentAreaAddressRegion обл., @Model.Area.RentAreaAddressCity, @Model.Area.RentAreaAddressStreet</strong>
-        </p>
-
-        @{
-            foreach (var item in Model.Photos)
-            {
-                string path = @item.PathToPhoto + @item.PhotoName + @item.PhotoExtension;
-                <img @*class="img-thumbnail"*@ src="@path" height="120" width="160" />
+        <div id="adress">
+            <h4>
+                <a href="#" style="color:gray;">@Model.Area.RentAreaAddressRegion обл., @Model.Area.RentAreaAddressCity, @Model.Area.RentAreaAddressStreet</a>
+            </h4>
+        </div>
+        <div>
+            @{
+                foreach (var item in Model.Photos)
+                {
+                    string path = @item.PathToPhoto + @item.PhotoName + @item.PhotoExtension;
+                    <img @*class="img-thumbnail"*@ src="@path" height="120" width="160" />
+                }
             }
-        }
+        </div>
     </div>
 
-    <div class="col-xs-10">
-        <h4>
-            <strong class="pull-left">id объекта: @Model.Area.AreaID</strong>
-        </h4>
+    <div class="row">
+        <div class="col-xs-10">
+            <table>
+                <tr>
+                    <td class="pull-left">id объекта: @Model.Area.AreaID</td>
+                </tr>
+                <tr>
+                    <td class="pull-left">площадь: @Model.Area.SquareArea м2</td>
+                </tr>
+            </table>
+        </div>
 
+        <div class="col-xs-2">
+            <h3 id="price" class="pull-right label label-primary">
+                    @Model.Area.MonthPrice.ToString() грн/месяц                
+            </h3>
+            @using (Html.BeginForm("AddToCart", "Cart"))
+            {
+                <div class="pull-right">
+                    @Html.Hidden("areaID", Model.Area.AreaID)
+                    @*@Html.HiddenFor(x => x.Area.AreaID)*@
+                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                    <input type="submit" class="btn btn-success" value="Добавить в список Ваших интересов" />
+                </div>
+            }
+        </div>
+    </div>
 
-    </div>
-    <div class="col-xs-2">
-        <h4>
-            <strong class="pull-right label label-primary">@Model.Area.MonthPrice / месяц</strong>
-        </h4>
-    </div>
-    <span class="lead">
+    <div class="row">
         @Model.Area.AreaDescription
-    </span>
+    </div>
 </div>
 
 
