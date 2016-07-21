@@ -12,14 +12,16 @@ namespace Domain.Entities
 
         public IEnumerable<CartLine> Lines { get { return _lineColliction; } } 
 
-        public void AddItem(Area area)
+        public bool AddItem(Area area)
         {
             CartLine line = _lineColliction.Where(a => a.Area.AreaID == area.AreaID).FirstOrDefault();
 
             if (line == null)
             {
                 _lineColliction.Add(new CartLine { Area = area });
-            }            
+                return true;
+            }
+            else return false;
         }
 
         public void RemoveLine(Area area)
@@ -27,7 +29,7 @@ namespace Domain.Entities
             _lineColliction.RemoveAll(a => a.Area.AreaID == area.AreaID);
         }
 
-        public decimal CalculateTotalValue()
+        public decimal CalculateTotalSum()
         {
             return _lineColliction.Sum(a => a.Area.MonthPrice);
         }

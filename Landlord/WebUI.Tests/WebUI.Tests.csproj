@@ -94,8 +94,8 @@
   <ItemGroup>
     <Compile Include="Controllers\AreasControllerTests.cs" />
     <Compile Include="Controllers\NavControllerTests.cs" />
+    <Compile Include="Domain\CartTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
