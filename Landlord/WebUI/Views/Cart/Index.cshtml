@@ -1,7 +1,7 @@
 ﻿@model WebUI.Models.CustomModels.CartViewModel
 
 @{
-    ViewBag.Title = "ILandLord: список Ваших интересов";
+    ViewBag.Title = "Список Ваших интересов:";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,8 +11,7 @@
     <thead>
         <tr>
             <th>Адрес</th>
-            <th class="text-right">Цена</th>
-            <th class="text-right">Итого</th>
+            <th class="text-right">Цена, грн/мес.</th>            
         </tr>
     </thead>
     <tbody>
@@ -20,7 +19,7 @@
         {
             <tr>
                 <td class="text-left">@line.Area.RentAreaAddressRegion обл., @line.Area.RentAreaAddressCity, @line.Area.RentAreaAddressStreet</td>
-                <td class="text-right">@line.Area.MonthPrice грн/мес.</td>
+                <td class="text-right">@line.Area.MonthPrice</td>
                 
                 <td>
                     @using (@Html.BeginForm("RemoveFromCart", "Cart"))
@@ -36,15 +35,15 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3" class="text-right">Итого: </td>
-            <td class="text-right">@Model.Cart.CalculateTotalSum().ToString() грн/мес.</td>
+            <td class="text-right">Итого: </td>
+            <td class="text-right">@Model.Cart.CalculateTotalSum().ToString()</td>
         </tr>
     </tfoot>
 
 </table>
 
 <div class="text-center">
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Продолжить покупки</a>
-    @Html.ActionLink("Оформить заказ", "CheckOut", null, new { @class = "btn btn-primary" })
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Продолжить просмотр</a>
+    @Html.ActionLink("Оформить заявку", "CheckOut", null, new { @class = "btn btn-primary" })
 </div>
 
