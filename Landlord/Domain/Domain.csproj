@@ -128,6 +128,7 @@
     <Compile Include="Entities\AreaType.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Photo.cs" />
+    <Compile Include="Entities\ShippingDetails.cs" />
     <Compile Include="Identity\CreateRoleModel.cs" />
     <Compile Include="Identity\EditRoleModel.cs" />
     <Compile Include="Identity\LogInModel.cs" />

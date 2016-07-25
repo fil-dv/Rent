@@ -15,7 +15,7 @@ namespace Domain.Entities
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Укажите номер контактного телефона")]
-        [Display(Name = "Номер телефона:")]
+        [Display(Name = "Номер телефона")]
         public string Phone { get; set; }
     }
 }
