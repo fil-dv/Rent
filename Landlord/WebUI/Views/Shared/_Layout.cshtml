@@ -15,6 +15,10 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 
+    <style>
+        .navbar-right
+    </style>
+
     <script>
 
         $(document).ready(function () {
@@ -71,6 +75,10 @@
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>
+
+            </div>
+            <div>
+                @Html.Action("Summary", "Cart")
             </div>
         </div>
     </nav>
@@ -127,7 +135,7 @@
                     &nbsp;frameworks: ASP.MVC, Entity Framework;
                 </li>
                 <li>
-                    &nbsp;technologies: Ajaxs, BootStrap, Ninject, Mock;
+                    &nbsp;technologies: Ajax, BootStrap, Ninject, Mock;
                 </li>
             </ul>
         </p>

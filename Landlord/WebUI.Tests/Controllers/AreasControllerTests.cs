@@ -31,12 +31,14 @@ namespace WebUI.Tests.Controllers
 
             AreasController controller = new AreasController(mockArea.Object, mockPhoto.Object);
             controller.pageSize = 3;
-            AreaListViewModel result = (AreaListViewModel)controller.List(null, 3).Model;
+            AreaListViewModel result = (AreaListViewModel)controller.List(null, 2).Model;
             List<AreaWithPhotos> areas = result.AreasWithPhotosList.ToList();
             
 
-            Assert.IsTrue(areas.Count == 1);
-            Assert.AreEqual(areas[0].Area.ContactaName, "name_7");
+            Assert.IsTrue(areas.Count == 3);
+            Assert.AreEqual(areas[0].Area.ContactaName, "name_4");
+            Assert.AreEqual(areas[1].Area.ContactaName, "name_5");
+            Assert.AreEqual(areas[2].Area.ContactaName, "name_6");
         }
 
         [TestMethod]

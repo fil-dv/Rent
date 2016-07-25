@@ -47,5 +47,10 @@ namespace WebUI.Controllers
             });
         }
 
+        public PartialViewResult Summary(Cart cart)
+        {
+            return PartialView(cart);
+        }
+
     }
 }

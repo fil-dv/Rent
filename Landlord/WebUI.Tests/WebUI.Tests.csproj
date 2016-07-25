@@ -94,8 +94,10 @@
   <ItemGroup>
     <Compile Include="Controllers\AreasControllerTests.cs" />
     <Compile Include="Controllers\NavControllerTests.cs" />
+    <Compile Include="Controllers\CartControllerTest.cs" />
     <Compile Include="Domain\CartTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
