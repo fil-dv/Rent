@@ -12,10 +12,12 @@ namespace WebUI.Controllers
     public class CartController : Controller
     {
         IAreaRepository _repoArea;
+        IOrderProcessor _orderProcessor;
 
-        public CartController(IAreaRepository repository)
+        public CartController(IAreaRepository repository, IOrderProcessor orderProcessor)
         {
             _repoArea = repository;
+            _orderProcessor = orderProcessor;
         }
         
         public RedirectToRouteResult AddToCart(Cart cart, int areaId, string returnUrl)
@@ -52,7 +54,7 @@ namespace WebUI.Controllers
             return PartialView(cart);
         }
 
-        public ViewResult CheckOut(Cart cart, ShippingDetails shippingDetails)
+        public ViewResult CheckOut()
         {
             bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
             if(!isLoggedIn)
@@ -60,6 +62,26 @@ namespace WebUI.Controllers
                 RedirectToAction("Login", "AccountController");
             }
             return View(new ShippingDetails());
+        }
+
+        [HttpPost]
+        public ViewResult CheckOut(Cart cart, ShippingDetails shippingDetails)
+        {
+            if (cart.Lines.Count() == 0)
+            {
+                ModelState.AddModelError("", "Извините, корзина пуста.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _orderProcessor.ProcessorOrder(cart, shippingDetails);
+                cart.Clear();
+                return View("Completed");
+            }
+            else
+            {
+                return View(new ShippingDetails());
+            }
         }
     }
 }

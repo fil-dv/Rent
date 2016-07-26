@@ -12,6 +12,8 @@ namespace WebUI.App_Start
     using Ninject.Web.Common;
     using Domain.Abstract;
     using Domain.Concrete.Repositories;
+    using Domain.Concrete.OrderProcessors;
+    using System.Configuration;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -64,6 +66,12 @@ namespace WebUI.App_Start
         {
             kernel.Bind<IAreaRepository>().To<EFAreaRepository>();
             kernel.Bind<IPhotoRepository>().To<EFPhotoRepository>();
+
+            EmailSettings emailSettings = new EmailSettings
+            {
+                WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
+            };
+            kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", emailSettings);
         }
     }
 }

@@ -10,12 +10,14 @@ namespace Domain.Entities
     
     public class ShippingDetails
     {
-        [Required(ErrorMessage = "Укажите Ваше имя")]
+        [Required(ErrorMessage = "Укажите Ваше имя.")]
         [Display(Name = "Имя:")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Укажите номер контактного телефона")]
+        [Required(ErrorMessage = "Укажите номер контактного телефона.")]
         [Display(Name = "Номер телефона:")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Введен некорректный номер.")]
         public string Phone { get; set; }
     }
 }

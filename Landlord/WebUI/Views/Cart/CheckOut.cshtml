@@ -9,9 +9,10 @@
 
 
 
+
 @using (Html.BeginForm())
 {
-    @*@Html.ValidationSummary()*@
+    @Html.ValidationSummary()
 
     <h3>Ваши данные:</h3><br />
    <hr />
@@ -19,14 +20,14 @@
             @Html.LabelFor(m => m.Name, new { @class = "col-md-3 control-label" })
             <div class="col-md-9">
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                @*@Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })*@
             </div>
         </div>
         <div class="row form-group">
-            @Html.LabelFor(m => m.Phone, new { @class = "col-md-3 control-label" })
+            @Html.LabelFor(m => m.Phone, new { @class = "phone col-md-3 control-label" })
             <div class="col-md-9">
                 @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                @*@Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })*@
             </div>
         </div>
     <hr />

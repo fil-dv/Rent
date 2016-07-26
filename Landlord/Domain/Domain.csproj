@@ -85,6 +85,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -120,8 +121,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAreaRepository.cs" />
+    <Compile Include="Abstract\IOrderProcessor.cs" />
     <Compile Include="Abstract\IPhotoRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\OrderProcessors\EmailOrderProcessor.cs" />
     <Compile Include="Concrete\Repositories\EFAreaRepository.cs" />
     <Compile Include="Concrete\Repositories\EFPhotoRepository.cs" />
     <Compile Include="Entities\Area.cs" />
