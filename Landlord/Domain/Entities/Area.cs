@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Domain.Entities
 
     public class Area 
     {
+        [Display(Name = "ID")]
         public int AreaID { get; set; }
         public int AreaTypeID { get; set; }
         public string AreaDescription { get; set; }
@@ -24,14 +26,19 @@ namespace Domain.Entities
         public string LegalAddressRegion { get; set; }
         public string LegalAddressCity { get; set; }
         public string LegalAddressStreet { get; set; }
+        [Display(Name = "Область")]
         public string RentAreaAddressRegion { get; set; }
+        [Display(Name = "Город")]
         public string RentAreaAddressCity { get; set; }
+        [Display(Name = "Улица, дом")]
         public string RentAreaAddressStreet { get; set; }
         public decimal SquareArea { get; set; }        
         public decimal MonthPrice { get; set; }
         public bool IsAvailable { get; set; }
         public int Rating { get; set; }
+        [Display(Name = "Широта")]
         public decimal? Latitude { get; set; }
+        [Display(Name = "Долгота")]
         public decimal? Longitude { get; set; }        
     }
 }

@@ -1,0 +1,104 @@
+﻿@using WebUI.Models.CustomModels
+@model IEnumerable<WebUI.Models.CustomModels.AreaWithPhotos>
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Список объектов:
+    </div>
+
+    <div class="panel-body">
+        <table class="admin table table-striped table-condensed table-bordered">
+            <tr>
+               
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Area.AreaID)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Area.RentAreaAddressRegion)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Area.RentAreaAddressCity)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Area.RentAreaAddressStreet)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Area.Latitude)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Area.Longitude)
+                </th>
+                <th class="text-center">
+                    Фотографии
+                </th>
+                <th colspan="2" class="text-center">
+                    Действия
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.AreaID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.RentAreaAddressRegion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.RentAreaAddressCity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.RentAreaAddressStreet)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.Latitude)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.Longitude)
+                    </td>
+
+                    <td>
+                        @{
+                            if (item.Photos.Count() > 0)
+                            {
+                                <a href="#" class="glyphicon glyphicon-shopping-cart"> @item.Photos.Count() шт.</a>
+                            }
+                            else
+                            {
+                                <a href="#">нет фото</a>
+                            }
+                        }
+                    </td>
+
+                    <td class="text-center">
+                        @using (Html.BeginForm("Edit", "Admin"))
+                        {
+                            @Html.Hidden("BookId", item.Area.AreaID)
+                            <input type="submit" class="btn btn-warning btn-xs" value="Редактировать" />
+                        }                    </td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("Delete", "Admin"))
+                        {
+                            @Html.Hidden("BookId", item.Area.AreaID)
+                            <input type="submit" class="btn btn-danger btn-xs" value="Удалить" />
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <div class="panel-footer">
+        @Html.ActionLink("Добавить", "Create", null, new { @class = "btn btn-default" })
+    </div>
+</div>

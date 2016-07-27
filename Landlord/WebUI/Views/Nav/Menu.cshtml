@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<string>
 
-@Html.ActionLink("К общему списку", "List", "Areas", null, new {@class = "btn btn-block btn-default btn-lg"} )
+<div class="mymain">
 
-@foreach (var item in Model)
-{
-    @Html.RouteLink(item, new
+    @Html.ActionLink("К общему списку", "List", "Areas", null, new { @class = "btn btn-block btn-default btn-lg" })
+
+    @foreach (var item in Model)
+    {
+        @Html.RouteLink(item, new
         {
             controller = "Areas",
             action = "List",
@@ -15,5 +17,7 @@
         {
             @class = "btn btn-block btn-default btn-lg" + (item == ViewBag.SelectedRegion ? " btn-primary" : "")
         }
-    )
-}
+        )
+    }
+
+</div>

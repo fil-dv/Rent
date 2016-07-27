@@ -15,10 +15,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 
-    <style>
-        .navbar-right
-    </style>
-
+ 
     <script>
 
         $(".phone").keyup(function () {
@@ -73,17 +70,13 @@
                 <div class="navbar-collapse collapse bg-4">
                     <ul class="nav navbar-nav">
                         <li id='home'>@Html.ActionLink("Каталог", "List", "Areas")</li>
-                        @*<li>@Html.ActionLink("О проекте", "About", "Home")</li>*@
                         <li><a class="scroll" href="#about">О проекте</a></li>
-                        @*<li>@Html.ActionLink("Контакты", "Contact", "Home")</li>*@
+                        <li><a class="scroll" href="#conditions">Условия</a></li>
                         <li><a class="scroll" href="#contact">Контакты</a></li>
                     </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
-                <hr />
-            </div>
-            <div>
-                @Html.Action("Summary", "Cart")
+                    @Html.Action("Summary", "Cart")
+                    @Html.Partial("_LoginPartial")                    
+                </div>            
             </div>
         </div>
     </nav>
@@ -91,18 +84,18 @@
     <!-- First Container -->
     <div id ="mainID" class="container-fluid bg-3 text-center">
     <div class="row panel">
-        <br /><br /><br />
+        
         <div id="regions" class="col-xs-3">
             @Html.Action("Menu", "Nav")
         </div>
-        <div class="col-xs-8">
+        <div class="mymain col-xs-8">
             @RenderBody()
         </div>
     </div>
 
     <!-- Second Container -->
     <div id="about" class="container-fluid bg-2 text-center my-about">
-        <br /><br /><br />
+        
         <h3 class="margin">О проекте</h3>
         <hr />
         <h4 class="row">
@@ -146,52 +139,40 @@
                     &nbsp;frameworks: ASP.MVC, Entity Framework;
                 </li>
                 <li>
-                    &nbsp;technologies: Ajax, BootStrap, Ninject, Mock;
+                    &nbsp;technologies: Ajax, BootStrap, Ninject, Mock, UnitTests;
                 </li>
             </ul>
         </p>
 
-        <hr />
-        
-        @*<a href="#" class="btn btn-default btn-lg">
-            <span class="glyphicon glyphicon-search"></span> Search
-        </a>*@
+        @*<hr />*@
     </div>
 
     <!-- Third Container (Grid) -->
     
+    
+    <div id="conditions" class="container-fluid bg-1 text-center">
 
-        <div class="container-fluid bg-1 text-center">
-            <br /><br /><br />
-            <h3 class="margin">Почему стоит выбрать услуги именно нашей компании?</h3>
-            <img id='photoMain' src="../Content/Images/1005.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
-            <h3>Разумные цены, многолетний опыт работы, быстрое оформлении документов.</h3>
-        </div>
-
+        <h3 class="margin">Почему стоит выбрать услуги именно нашей компании? Разумные цены, многолетний опыт работы, быстрое оформлении документов.</h3>
+        <hr />
+        <img id='photoMain' src="../Content/Images/1005.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="300" height="250">
+        <hr />
+        <p class="text-left"><i>&nbsp;&nbsp;&nbsp;Для выполнения обязательств по предоставлению Арендатору помещений во временное пользование между Арендатором и Арендодателем заключается Договор аренды минимальным сроком от 3 мес. и более. В стоимость аренды помещений входит непосредственно цена аренды предоставленных площадей. Другие платежи : коммунальные (отопление, электроэнергия, водоснабжение), охрана, интернет, вывоз мусора, оплачиваются арендатором отдельно, согласно выставленного счета. Начисление арендной платы и оплата услуг, начинается со дня подписания акта приема-передачи Помещений. По соглашению с Арендодателем Арендатор вправе внести арендную плату за любой срок вперед в пределах срока действия Договора.</i></p>
+        <hr />
     </div>
-
-
-    @*Для выполнения обязательств по предоставлению Арендатору помещений во временное пользование между Арендатором и Арендодателем заключается Договор аренды минимальным сроком от 3 мес. и более.
-
-    В стоимость аренды помещений входит непосредственно цена аренды предоставленных площадей.
-
-    Другие платежи : коммунальные (отопление, электроэнергия, водоснабжение), охрана, интернет, вывоз мусора, оплачиваются арендатором отдельно, согласно выставленного счета.
-
-    Начисление арендной платы и оплата услуг, начинается со дня подписания акта приема-передачи Помещений. По соглашению с Арендодателем Арендатор вправе внести арендную плату за любой срок вперед в пределах срока действия Договора.*@
-
+    
 
 
     <!-- Fourth Container (Grid) -->
     <div id="contact" class="container-fluid bg-2 text-info">
-        <br /><br /><br />
+        
         <h3 class="margin">Наши контакты</h3>
         <hr />
        
-        <h4>Юридический адрес: Украина, г. Киев, ул. Крещатик, 777, оф. 3.</h4>
+        <h4 class="text-left">Юридический адрес: Украина, г. Киев, ул. Крещатик, 777, оф. 3.</h4>
         <hr />
 
         <h4>Телефоны службы поддержки:</h4>
-        <ul class="row" style="list-style:none">
+        <ul class="row text-left" style="list-style:none">
             <li>
                 &nbsp; <img src="../content/Images/OperatorLogo/mts.png"/> +38(050)190-98-82;
             </li>
@@ -205,7 +186,7 @@
         <hr />
 
         <h4>Электронные адреса службы поддержки:</h4>
-        <ul class="row">
+        <ul class="row text-left">
             <li>
                 &nbsp;admin@landlord.com;
             </li>
@@ -224,8 +205,6 @@
 
     
     @RenderSection("scripts", required: false)
- 
-    
    
 
 
