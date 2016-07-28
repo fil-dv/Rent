@@ -22,6 +22,7 @@
         </div>
         <div class="row form-group">
             @Html.LabelFor(m => m.Phone, new { @class = "col-md-3 control-label" })
+            
             <div class="col-md-9">
                 @Html.TextBoxFor(m => m.Phone, new { @class = "phone form-control" })
                 @*@Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })*@
@@ -34,22 +35,32 @@
     </div>
 }
 
-@section script {
+@*section script {
 
-    @*@Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css")
     @Styles.Render("~/bundles/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")*@
+    @Scripts.Render("~/bundles/bootstrap")
+        
+        <script>
+
+                    $(".phone").keyup(function () {
+                        //alert("inside!");
+                        $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d)+$/, "($1)$2-$3"));
+                    });
+
+        </script>*@
     
-    @Scripts.Render("~/bundles/jquery")
+ @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 
-    <script>
+            <script>
 
-        $(".phone").keyup(function () {
-            //alert("inside!");
-            $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d)+$/, "($1)$2-$3"));
-        });
+                    $(".phone").keyup(function () {
+                        //alert("inside!");
+                        $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d)+$/, "($1)$2-$3"));
+                    });
 
-    </script>
-}
+            </script>
+}   

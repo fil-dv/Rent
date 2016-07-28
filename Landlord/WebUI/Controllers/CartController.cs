@@ -54,12 +54,14 @@ namespace WebUI.Controllers
             return PartialView(cart);
         }
 
-        public ViewResult CheckOut()
+        public ActionResult CheckOut()
         {
             bool isLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
-            if(!isLoggedIn)
+            string userName = System.Web.HttpContext.Current.User.Identity.Name;
+            if (!isLoggedIn)
             {
-                RedirectToAction("Login", "AccountController");
+                //RedirectToAction("Login", "AccountController");
+                return RedirectToAction("Login", "Account");
             }
             return View(new ShippingDetails());
         }

@@ -76,3 +76,4 @@ D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Castle.Core
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Moq.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Ninject.Web.Common.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Ninject.xml
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\GoogleMaps.LocationServices.dll

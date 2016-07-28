@@ -71,8 +71,10 @@
                         <li><a class="scroll" href="#conditions">Условия</a></li>
                         <li><a class="scroll" href="#contact">Контакты</a></li>
                     </ul>
-                    @Html.Action("Summary", "Cart")
+                    
+                    @if (User.Identity.IsAuthenticated) {@Html.Action("Summary", "Cart")}                    
                     @Html.Partial("_LoginPartial")                    
+
                 </div>            
             </div>
         </div>
@@ -197,8 +199,8 @@
         <a class="scroll" href="#start"><p>Дипломная работа Филоненко Дмитрия. Компьютерная академия "Шаг", 2016</p></a>
     </footer>
 
-    
-    @RenderSection("script", false) 
+    @RenderSection("scripts", required: false)
+    @*@RenderSection("script", false)*@ 
    
 
 

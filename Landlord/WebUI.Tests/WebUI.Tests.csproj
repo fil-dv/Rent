@@ -92,10 +92,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AreasControllerTests.cs" />
-    <Compile Include="Controllers\NavControllerTests.cs" />
-    <Compile Include="Controllers\CartControllerTest.cs" />
-    <Compile Include="Controllers\AdminControllerTests.cs" />
+    <Compile Include="Controllers\MVC\AreasControllerTests.cs" />
+    <Compile Include="Controllers\MVC\NavControllerTests.cs" />
+    <Compile Include="Controllers\MVC\CartControllerTest.cs" />
+    <Compile Include="Controllers\MVC\AdminControllerTests.cs" />
     <Compile Include="Domain\CartTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -114,6 +114,9 @@
       <Project>{2593A5FE-FAAA-4CCF-93FB-39BC38DB4A06}</Project>
       <Name>WebUI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\API\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
