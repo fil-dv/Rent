@@ -18,10 +18,7 @@
  
     <script>
 
-        $(".phone").keyup(function () {
-            alert("inside!");
-            $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d)+$/, "($1)$2-$3"));
-        });
+       
 
         $(document).ready(function () {
             $(window).scrollTop($('#mainID').offset().top).scrollLeft($('#mainID').offset().left);
@@ -136,10 +133,7 @@
                     &nbsp;programming languages: HTML, CSS, JavaScript, XML, Java, C#;
                 </li>
                 <li>
-                    &nbsp;frameworks: ASP.MVC, Entity Framework;
-                </li>
-                <li>
-                    &nbsp;technologies: Ajax, BootStrap, Ninject, Mock, UnitTests;
+                    &nbsp;technologies: Ajax, ASP.NET MVC, BootStrap, Entity Framework, Identity, Ninject, Mock, UnitTests;
                 </li>
             </ul>
         </p>
@@ -204,7 +198,7 @@
     </footer>
 
     
-    @RenderSection("scripts", required: false)
+    @RenderSection("script", false) 
    
 
 

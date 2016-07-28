@@ -7,9 +7,6 @@
 
 <h2>Оформление заявки.</h2>
 
-
-
-
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary()
@@ -24,9 +21,9 @@
             </div>
         </div>
         <div class="row form-group">
-            @Html.LabelFor(m => m.Phone, new { @class = "phone col-md-3 control-label" })
+            @Html.LabelFor(m => m.Phone, new { @class = "col-md-3 control-label" })
             <div class="col-md-9">
-                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Phone, new { @class = "phone form-control" })
                 @*@Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })*@
             </div>
         </div>
@@ -35,5 +32,24 @@
     <div class="text-center">
         <input class="btn btn-primary" type="submit" value="Отправить заявку" />
     </div>
+}
 
+@section script {
+
+    @*@Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
+    
+    @Scripts.Render("~/bundles/jquery")
+
+    <script>
+
+        $(".phone").keyup(function () {
+            //alert("inside!");
+            $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d)+$/, "($1)$2-$3"));
+        });
+
+    </script>
 }

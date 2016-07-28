@@ -34,7 +34,7 @@
                     @Html.DisplayNameFor(model => model.Area.Longitude)
                 </th>
                 <th class="text-center">
-                    Фотографии
+                    Фото
                 </th>
                 <th colspan="2" class="text-center">
                     Действия
@@ -70,11 +70,12 @@
                         @{
                             if (item.Photos.Count() > 0)
                             {
-                                <a href="#" class="glyphicon glyphicon-shopping-cart"> @item.Photos.Count() шт.</a>
+                                @*<a href="#" class="glyphicon glyphicon-shopping-cart"> @item.Photos.Count() шт.</a>*@
+                                <span> @item.Photos.Count() шт.</span>
                             }
                             else
                             {
-                                <a href="#">нет фото</a>
+                                <a href="#">нет</a>
                             }
                         }
                     </td>

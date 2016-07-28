@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
+using System.Data.Entity.Migrations;
 
 namespace Domain.Concrete.Repositories
 {
@@ -19,6 +20,12 @@ namespace Domain.Concrete.Repositories
             {
                 return _context.Areas;
             }
+        }
+
+        public void SaveArea(Area area)
+        {
+            _context.Areas.AddOrUpdate(area);
+            _context.SaveChanges();
         }
     }
 }

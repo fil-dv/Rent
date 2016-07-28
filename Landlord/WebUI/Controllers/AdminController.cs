@@ -1,4 +1,5 @@
 ﻿using Domain.Abstract;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,9 @@ namespace WebUI.Controllers
         IPhotoRepository _repoPhoto;
 
 
-        public AdminController(IAreaRepository repository, IPhotoRepository repoPhoto)
+        public AdminController(IAreaRepository repoArea, IPhotoRepository repoPhoto)
         {
-            _repoArea = repository;
+            _repoArea = repoArea;
             _repoPhoto = repoPhoto;
         }
 
@@ -35,6 +36,28 @@ namespace WebUI.Controllers
             }
 
             return View(model);
+        }
+
+        public ViewResult Edit(int areaID)
+        {
+            Area area = _repoArea.Areas.FirstOrDefault(b => b.AreaID == areaID);
+            return View(area);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Area area)
+        {
+            if (ModelState.IsValid)
+            {
+                _repoArea.SaveArea(area);
+                TempData["message"] = String.Format("Изменения данных объекта ID = \"{0}\" успешно применены. ", area.AreaID);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(area);
+            }
+
         }
     }
 }
