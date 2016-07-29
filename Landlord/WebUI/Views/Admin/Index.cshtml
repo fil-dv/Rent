@@ -83,13 +83,14 @@
                     <td class="text-center">
                         @using (Html.BeginForm("Edit", "Admin"))
                         {
-                            @Html.Hidden("BookId", item.Area.AreaID)
+                            @Html.Hidden("areaID", item.Area.AreaID)
                             <input type="submit" class="btn btn-warning btn-xs" value="Редактировать" />
-                        }                    </td>
+                        }                    
+                    </td>
                     <td class="text-center">
                         @using (Html.BeginForm("Delete", "Admin"))
                         {
-                            @Html.Hidden("BookId", item.Area.AreaID)
+                            @Html.Hidden("areaID", item.Area.AreaID)
                             <input type="submit" class="btn btn-danger btn-xs" value="Удалить" />
                         }
                     </td>

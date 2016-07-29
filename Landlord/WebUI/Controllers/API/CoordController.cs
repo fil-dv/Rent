@@ -29,7 +29,7 @@ namespace WebUI.Controllers.API
             string address = String.Empty;
             GoogleLocationService locationService;
             MapPoint point;
-            int counter = 0;
+            //int counter = 0;
 
             foreach (Area item in list)
             {
@@ -40,7 +40,7 @@ namespace WebUI.Controllers.API
                     item.Latitude = System.Convert.ToDecimal(point.Latitude);
                 if (item.Longitude == null)
                     item.Longitude = System.Convert.ToDecimal(point.Longitude);
-                Console.WriteLine(String.Format("{0}) {1}\tширота - {2}\tдолгота - {3}", ++counter, address, item.Latitude, item.Longitude));
+                //Console.WriteLine(String.Format("{0}) {1}\tширота - {2}\tдолгота - {3}", ++counter, address, item.Latitude, item.Longitude));
                 Thread.Sleep(200);
             }
 
