@@ -48,21 +48,20 @@ namespace WebUI.Controllers
             return View(area);
         }
 
-        //[HttpPost]
-        //public ActionResult Edit(Area area)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _repoArea.SaveArea(area);
-        //        TempData["message"] = String.Format("Изменения данных объекта ID = \"{0}\" успешно применены. ", area.AreaID);
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        return View(area);
-        //    }
-
-        //}
+        [HttpPost]
+        public ActionResult Edit(Area area)
+        {
+            if (ModelState.IsValid)
+            {
+                _repoArea.SaveAreaChanges(area);
+                TempData["message"] = String.Format("Изменения данных объекта ID = \"{0}\" успешно применены. ", area.AreaID);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(area);
+            }
+        }
 
         public void GetCoordByAddressForAll()
         {
@@ -87,7 +86,7 @@ namespace WebUI.Controllers
 
             try
             {
-                // _repoArea.SaveChanges();
+                _repoArea.SaveAllAreasChanges();
             }
             catch (DbEntityValidationException dbEx)
             {

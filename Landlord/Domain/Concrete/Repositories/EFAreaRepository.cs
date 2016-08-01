@@ -22,7 +22,12 @@ namespace Domain.Concrete.Repositories
             }
         }
 
-        public void SaveArea(Area area)
+        public void SaveAllAreasChanges()
+        {
+            _context.SaveChanges();
+        }
+
+        public void SaveAreaChanges(Area area)
         {
             _context.Areas.AddOrUpdate(area);
             _context.SaveChanges();

@@ -10,6 +10,7 @@ namespace Domain.Abstract
     public interface IAreaRepository
     {
         IEnumerable<Area> Areas { get; }
-        void SaveArea(Area area);
+        void SaveAllAreasChanges();
+        void SaveAreaChanges(Area area);
     }
 }

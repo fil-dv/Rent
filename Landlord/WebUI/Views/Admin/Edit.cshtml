@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "Редактирование объекта";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    HtmlHelper.ClientValidationEnabled = true;
-    HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
+    //HtmlHelper.ClientValidationEnabled = true;
+    //HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
 }
 
 <div class="admin panel">
@@ -12,25 +12,29 @@
         <h3>Редактирование объекта № @Model.AreaID</h3>
     </div>
 
-    @using (Html.BeginForm())
+@using (Html.BeginForm())
     {
-        @*@Html.EditorForModel()*@
-        @*<div class="panel-body">
-            @Html.HiddenFor(m => m.AreaID)
+        <div class="panel-body">
+            @*@Html.HiddenFor(m => m.AreaID)*@
             @foreach (var property in ViewData.ModelMetadata.Properties)
             {
-                if (property.PropertyName != "AreaID")
+                if (property.PropertyName != "AreaID" || property.PropertyName != "AreaTypeID")
                 {
                     <div class="form-group">
                         <label>@(property.DisplayName ?? property.PropertyName)</label>
-                        
-                        @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
-                        
+                        @if (property.PropertyName == "Description")
+                        {
+                            @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+                        }
+                        else
+                        {
+                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                        }
                         @Html.ValidationMessage(property.PropertyName)
                     </div>
                 }
             }
-        </div>*@
+        </div>
         <div class="panel-footer">
             <input type="submit" value="Сохранить" class="btn btn-primary" />
             @Html.ActionLink("Отмена", "Index", null, new { @class = "btn btn-default" })

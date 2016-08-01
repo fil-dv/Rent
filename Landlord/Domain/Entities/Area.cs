@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Domain.Entities
 {
@@ -14,8 +15,10 @@ namespace Domain.Entities
 
     public class Area 
     {
-        [Display(Name = "ID")]
+        //[Display(Name = "ID")]
+        [HiddenInput (DisplayValue = false)]
         public int AreaID { get; set; }
+        [HiddenInput(DisplayValue = false)]
         public int AreaTypeID { get; set; }
         public string AreaDescription { get; set; }
         public string OwnerName { get; set; }

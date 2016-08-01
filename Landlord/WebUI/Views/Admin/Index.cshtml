@@ -8,16 +8,16 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        Список объектов:
+        @Html.ActionLink("Найти координаты", "GetCoordByAddressForAll")
     </div>
 
     <div class="panel-body">
         <table class="admin table table-striped table-condensed table-bordered">
             <tr>
                
-                <th class="text-center">
+                @*<th class="text-center">
                     @Html.DisplayNameFor(model => model.Area.AreaID)
-                </th>
+                </th>*@
                 <th class="text-center">
                     @Html.DisplayNameFor(model => model.Area.RentAreaAddressRegion)
                 </th>
@@ -45,9 +45,9 @@
             {
                 <tr>
                     
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.Area.AreaID)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.Area.RentAreaAddressRegion)
                     </td>
@@ -81,10 +81,12 @@
                     </td>
 
                     <td class="text-center">
-                        @using (Html.BeginForm("Edit", "Admin"))
+                        @using (Html.BeginForm("Edit", "Admin", FormMethod.Get))
                         {
-                            @Html.Hidden("areaID", item.Area.AreaID)
-                            <input type="submit" class="btn btn-warning btn-xs" value="Редактировать" />
+                            @Html.ActionLink("Редактировать", "Edit", "Admin", new { item.Area.AreaID }, new { @class = "btn btn-warning btn-xs" })
+
+                            @*@Html.Hidden("areaID", item.Area.AreaID)
+                            <input type="submit" class="btn btn-warning btn-xs" value="Редактировать" />*@
                         }                    
                     </td>
                     <td class="text-center">
