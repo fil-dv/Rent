@@ -15,12 +15,13 @@
 @using (Html.BeginForm())
     {
         <div class="panel-body">
-            @*@Html.HiddenFor(m => m.AreaID)*@
+            @Html.HiddenFor(m => m.AreaID)
             @foreach (var property in ViewData.ModelMetadata.Properties)
             {
-                if (property.PropertyName != "AreaID" || property.PropertyName != "AreaTypeID")
+                if (property.PropertyName != "AreaID" && property.PropertyName != "AreaTypeID")
                 {
                     <div class="form-group">
+
                         <label>@(property.DisplayName ?? property.PropertyName)</label>
                         @if (property.PropertyName == "Description")
                         {

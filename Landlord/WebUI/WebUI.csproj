@@ -247,6 +247,7 @@
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelper.cs" />
     <Compile Include="Infrastructure\CartModelBinder.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomModels\AreaListViewModel.cs" />
     <Compile Include="Models\CustomModels\AreaWithPhotos.cs" />

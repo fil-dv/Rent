@@ -29,19 +29,19 @@ namespace Domain.Concrete
 
             modelBuilder.Entity<Area>()
                 .Property(e => e.Latitude)
-                .HasPrecision(16, 4);
+                .HasPrecision(16, 10);
 
             modelBuilder.Entity<Area>()
                 .Property(e => e.Longitude)
-                .HasPrecision(16, 4);
+                .HasPrecision(16, 10);
          
             modelBuilder.Entity<Photo>()
                 .Property(e => e.Latitude)
-                .HasPrecision(16, 4);
+                .HasPrecision(16, 10);
 
             modelBuilder.Entity<Photo>()
                 .Property(e => e.Longitude)
-                .HasPrecision(16, 4);
+                .HasPrecision(16, 10);
         }
     }
 }

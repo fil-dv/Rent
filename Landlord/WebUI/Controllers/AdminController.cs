@@ -7,6 +7,7 @@ using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebUI.Models.CustomModels;
@@ -63,43 +64,59 @@ namespace WebUI.Controllers
             }
         }
 
-        public void GetCoordByAddressForAll()
+        public ActionResult GetCoordByAddressForAll()
         {
-            IEnumerable<Area> list = _repoArea.Areas.Where(r => r.Latitude == null || r.Longitude == null);
-            string address = String.Empty;
-            GoogleLocationService locationService;
-            MapPoint point;
-            //int counter = 0;
+            Task.Factory.StartNew(() => {
 
-            foreach (Area item in list)
-            {
-                address = item.RentAreaAddressRegion + " обл., " + item.RentAreaAddressCity + ", " + item.RentAreaAddressStreet;
-                locationService = new GoogleLocationService();
-                point = locationService.GetLatLongFromAddress(address);
-                if (item.Latitude == null)
-                    item.Latitude = System.Convert.ToDecimal(point.Latitude);
-                if (item.Longitude == null)
-                    item.Longitude = System.Convert.ToDecimal(point.Longitude);
-                //Console.WriteLine(String.Format("{0}) {1}\tширота - {2}\tдолгота - {3}", ++counter, address, item.Latitude, item.Longitude));
-                Thread.Sleep(200);
-            }
+                IEnumerable<Area> list = _repoArea.Areas.Where(r => r.Latitude == null || r.Longitude == null);
+                string address = String.Empty;
+                GoogleLocationService locationService;
+                MapPoint point;
+                int counter = 0;
 
-            try
-            {
-                _repoArea.SaveAllAreasChanges();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                foreach (Area item in list)
                 {
-                    foreach (var validationError in validationErrors.ValidationErrors)
+                    try
                     {
-                        Trace.TraceInformation("Property: {0} Error: {1}",
-                                                validationError.PropertyName,
-                                                validationError.ErrorMessage);
+                        address = item.RentAreaAddressRegion + " обл., " + item.RentAreaAddressCity + ", " + item.RentAreaAddressStreet;
+                        locationService = new GoogleLocationService();
+                        point = locationService.GetLatLongFromAddress(address);
+                        if (item.Latitude == null)
+                            item.Latitude = System.Convert.ToDecimal(point.Latitude);
+                        if (item.Longitude == null)
+                            item.Longitude = System.Convert.ToDecimal(point.Longitude);
+                        if (++counter > 30) break;
+                        //Console.WriteLine(String.Format("{0}) {1}\tширота - {2}\tдолгота - {3}", ++counter, address, item.Latitude, item.Longitude));
+                        Thread.Sleep(2000);
+                    }
+                    catch (NullReferenceException ex)
+                    {
+                        continue;
                     }
                 }
-            }
+
+                try
+                {
+                    _repoArea.SaveAllAreasChanges();
+                }
+                catch (DbEntityValidationException dbEx)
+                {
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            Trace.TraceInformation("Property: {0} Error: {1}",
+                                                    validationError.PropertyName,
+                                                    validationError.ErrorMessage);
+                        }
+                    }
+                }
+            });
+            
+
+            TempData["message"] = String.Format("Получение координат объектов завершено.");
+            return RedirectToAction("Index");
+
             //catch (Exception ex)
             //{
             //    Console.WriteLine(ex.Message);
