@@ -107,3 +107,5 @@ D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Ninject.Web.Common.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Ninject.Web.Mvc.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\GoogleMaps.LocationServices.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Jmelosegui.Mvc.GoogleMap.dll
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\GoogleMapsApi.dll
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\GoogleMapsApi.xml

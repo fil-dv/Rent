@@ -52,6 +52,10 @@
       <HintPath>..\packages\GoogleMaps.LocationServices.0.9.8.6\lib\net40\GoogleMaps.LocationServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="GoogleMapsApi, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GoogleMapsApi.0.56.0\lib\net45\GoogleMapsApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Jmelosegui.Mvc.GoogleMap, Version=0.8.0.0, Culture=neutral, PublicKeyToken=bf3d287218d508fe, processorArchitecture=MSIL">
       <HintPath>..\packages\Jmelosegui.Mvc.Googlemap.0.8.0.0\lib\net45\Jmelosegui.Mvc.GoogleMap.dll</HintPath>
       <Private>True</Private>

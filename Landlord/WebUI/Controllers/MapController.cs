@@ -22,8 +22,8 @@ namespace WebUI.Controllers
             Area area = _repoArea.Areas.FirstOrDefault(a => a.AreaID == areaID);
             return View(area);
         }
-        
-        
-        
+
+
+
     }
 }
