@@ -9,7 +9,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
+using System.Web.Helpers;
 using System.Web.Http;
+using System.Web.Http.Results;
+using WebUI.Models.API;
+//using System.Web.Mvc;
 
 namespace WebUI.Controllers.API
 {
@@ -65,6 +69,68 @@ namespace WebUI.Controllers.API
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.InnerException.Message);
             }
+        }
+
+        public JsonResult<List<NearlyAreaModel>> GetNearlyAreas(decimal? latit, decimal? longit)
+        {
+            const int areasCount = 3;
+
+            List<DeltaModel> listWithDelta = new List<DeltaModel>();
+
+            foreach (Area item in _repoArea.Areas)
+            {
+                if(latit != null && longit != null && item.Latitude!= null && item.Longitude !=null)
+                {
+                    DeltaModel dModel = new DeltaModel
+                    {
+                        AreaId = item.AreaID,
+                        DeltaLat = item.Latitude - latit,
+                        DeltaLong = item.Longitude - longit
+                    };
+
+                    listWithDelta.Add(dModel);
+                }               
+            }
+
+            List<NearlyAreaModel> nearlyAreaList = new List<NearlyAreaModel>();
+
+            for(int i = 0; i < areasCount; ++i)
+            {
+                decimal? minDeltaLat = listWithDelta.Min(d => d.DeltaLat);
+                decimal? minDeltaLong = listWithDelta.Min(d => d.DeltaLong);
+
+                DeltaModel deltaModel = new DeltaModel();
+
+                if (minDeltaLat < minDeltaLong)
+                {
+                    deltaModel = listWithDelta.Find(d => d.DeltaLat == minDeltaLat);
+                }
+                else
+                {
+                    deltaModel = listWithDelta.Find(d => d.DeltaLong == minDeltaLong);
+                }
+
+                
+                if (deltaModel != null)
+                {
+                    Area area = _repoArea.Areas.ToList().Find(a => a.AreaID == deltaModel.AreaId);
+
+                    NearlyAreaModel nearlyAreaModel = new NearlyAreaModel
+                    {
+                        AreaId = area.AreaID,
+                        Region = area.RentAreaAddressRegion,
+                        City = area.RentAreaAddressCity,
+                        Street = area.RentAreaAddressStreet,
+                        Flat = "12345", ////////////////////////////
+                        Floor = ""      ////////////////////////////
+                    };
+
+                    nearlyAreaList.Add(nearlyAreaModel);
+
+                    listWithDelta.Remove(deltaModel);
+                }  
+            }
+            return Json(nearlyAreaList);
         }
     }
 }

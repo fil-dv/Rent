@@ -30,7 +30,6 @@ D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Microsoft.A
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Microsoft.Owin.Security.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Owin.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.dll
-D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\System.Web.Http.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\EntityFramework.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\System.Web.Http.WebHost.dll
