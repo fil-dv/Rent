@@ -19,5 +19,11 @@ namespace Domain.Concrete.Repositories
                 return _context.Photos;
             }
         }
+
+        public void DeletePhoto(Photo photo)
+        {
+            _context.Photos.Remove(photo);
+            _context.SaveChanges();
+        }
     }
 }

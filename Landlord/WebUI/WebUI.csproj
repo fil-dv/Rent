@@ -243,15 +243,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\MVC\AccountController.cs" />
+    <Compile Include="Controllers\MVC\AdminController.cs" />
     <Compile Include="Controllers\API\CoordController.cs" />
-    <Compile Include="Controllers\AreasController.cs" />
-    <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MapController.cs" />
-    <Compile Include="Controllers\NavController.cs" />
+    <Compile Include="Controllers\MVC\AreasController.cs" />
+    <Compile Include="Controllers\MVC\CartController.cs" />
+    <Compile Include="Controllers\MVC\HomeController.cs" />
+    <Compile Include="Controllers\MVC\ManageController.cs" />
+    <Compile Include="Controllers\MVC\MapController.cs" />
+    <Compile Include="Controllers\MVC\NavController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

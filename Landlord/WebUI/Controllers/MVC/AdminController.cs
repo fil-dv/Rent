@@ -46,7 +46,17 @@ namespace WebUI.Controllers
         public ViewResult Edit(int areaID)
         {
             Area area = _repoArea.Areas.FirstOrDefault(b => b.AreaID == areaID);
-            return View(area);
+            List<Photo> photos = _repoPhoto.Photos.Where(ph => ph.AreaID == area.AreaID).ToList();
+
+            AreaWithPhotos model = new AreaWithPhotos
+            {
+                Area = area,
+                Photos = photos
+            };
+
+            //ViewBag.Photos = photos;
+
+            return View(model);
         }
 
         [HttpPost]
@@ -89,7 +99,7 @@ namespace WebUI.Controllers
                         //Console.WriteLine(String.Format("{0}) {1}\tширота - {2}\tдолгота - {3}", ++counter, address, item.Latitude, item.Longitude));
                         Thread.Sleep(2000);
                     }
-                    catch (NullReferenceException ex)
+                    catch (NullReferenceException)
                     {
                         continue;
                     }
@@ -123,5 +133,14 @@ namespace WebUI.Controllers
             //    Console.WriteLine(ex.InnerException.Message);
             //}
         }
+
+        [HttpPost]
+        public ActionResult PhotoDelete(int photoID, int areaId)
+        {
+            Photo photo = _repoPhoto.Photos.Where(p => p.PhotoID == photoID).ToArray()[0];
+            _repoPhoto.DeletePhoto(photo);
+
+            return RedirectToAction("Edit", new { areaID = areaId });
+        } 
     }
 }

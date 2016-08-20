@@ -16,42 +16,47 @@ namespace Domain.Entities
     public class Area 
     {
         [Display(Name = "ID")]
-        //[HiddenInput (DisplayValue = false)]
+        [HiddenInput (DisplayValue = false)]
         [Editable(false)]
         public int AreaID { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
+        //[HiddenInput(DisplayValue = false)]
         public int AreaTypeID { get; set; }
 
+        [DataType(DataType.MultilineText)]
+        [Display(Name = "Описание:")]
         public string AreaDescription { get; set; }
+
+        [Display(Name = "Владелец:")]
         public string OwnerName { get; set; }
+        [Display(Name = "Контактное лицо:")]
         public string ContactaName { get; set; }
+        [Display(Name = "Контактный телефон №1:")]
         public string ContactaPhone1 { get; set; }
+        [Display(Name = "Контактный телефон №2:")]
         public string ContactaPhone2 { get; set; }
+        [Display(Name = "Контактный телефон №3:")]
         public string ContactaPhone3 { get; set; }
+        [Display(Name = "Юридический адрес владельца(область)")]
         public string LegalAddressRegion { get; set; }
-
+        [Display(Name = "Юридический адрес владельца(город)")]
         public string LegalAddressCity { get; set; }
-
+        [Display(Name = "Юридический адрес владельца(улица, дом, [квартира])")]
         public string LegalAddressStreet { get; set; }
-
-        [Display(Name = "Область")]
+        [Display(Name = "Адрес сдаваемой площади (область)")]
         public string RentAreaAddressRegion { get; set; }
-
-        [Display(Name = "Город")]
+        [Display(Name = "Адрес сдаваемой площади (город)")]
         public string RentAreaAddressCity { get; set; }
-
-        [Display(Name = "Улица, дом")]
+        [Display(Name = "Адрес сдаваемой площади (Улица, дом, [квартира])")]
         public string RentAreaAddressStreet { get; set; }
-
+        [Display(Name = "Площадь, м2")]
         public decimal SquareArea { get; set; }
-
+        [Display(Name = "Стоимость аренды в месяц")]
         public decimal MonthPrice { get; set; }
-
+        [Display(Name = "Доступность в настоящее время")]
         public bool IsAvailable { get; set; }
-        
+        [Display(Name = "Популярность")]
         public int Rating { get; set; }
-
         
         [DisplayFormat(DataFormatString = "{0:n10}", ApplyFormatInEditMode = true)]
         [Display(Name = "Широта")]

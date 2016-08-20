@@ -28,8 +28,8 @@ namespace Domain.Concrete.Repositories
         }
 
         public void SaveAreaChanges(Area area)
-        {
-            _context.Areas.AddOrUpdate(area);
+        { 
+            _context.Areas.AddOrUpdate(area);           
             _context.SaveChanges();
         }
     }

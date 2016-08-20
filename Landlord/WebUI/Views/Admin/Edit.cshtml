@@ -1,4 +1,7 @@
-﻿@model Domain.Entities.Area
+﻿@using WebUI.Models.CustomModels
+@model WebUI.Models.CustomModels.AreaWithPhotos
+
+@*@model Domain.Entities.Area*@
 
 @{
     ViewBag.Title = "Редактирование объекта";
@@ -9,38 +12,85 @@
 
 <div class="admin panel">
     <div class="panel-heading">
-        <h3>Редактирование объекта № @Model.AreaID</h3>
+        <h3>Редактирование объекта № @Model.Area.AreaID</h3>
     </div>
 
-@using (Html.BeginForm())
-    {
-        <div class="panel-body">
-            @Html.HiddenFor(m => m.AreaID)
-            @foreach (var property in ViewData.ModelMetadata.Properties)
+    <div class="row panel">
+        <div class="col-xs-7">
+            @using (Html.BeginForm())
             {
-                if (property.PropertyName != "AreaID" && property.PropertyName != "AreaTypeID")
-                {
-                    <div class="form-group">
+                <div class="panel-body">
+                    
+                    @*@foreach (var property in ViewData.ModelMetadata.Properties)
+                    {
+                        if (property.PropertyName != "AreaID" && property.PropertyName != "AreaTypeID")
+                        {
+                            <div class="form-group">
 
-                        <label>@(property.DisplayName ?? property.PropertyName)</label>
-                        @if (property.PropertyName == "Description")
-                        {
-                            @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
-                        }
-                        else
-                        {
-                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
-                        }
-                        @Html.ValidationMessage(property.PropertyName)
-                    </div>
-                }
+                                <label>@(property.DisplayName ?? property.PropertyName)</label>
+
+                                @if (property.PropertyName == "Description")
+                                {
+                                    @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+                                }
+                                else
+                                {
+                                    @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                                }
+                                @Html.ValidationMessage(property.PropertyName)
+                            
+                            </div>
+                        }*@
+
+                    @Html.TextAreaFor(m => m.Area.AreaDescription, new { @class = "form-control", rows = 7 })  
+                    @Html.TextBoxFor(m => m.Area.ContactaName, new { @class = "form-control" })    
+                    @Html.TextBoxFor(m => m.Area.ContactaPhone1, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Area.ContactaPhone2, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Area.ContactaPhone3, null, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Area.LegalAddressRegion, null, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Area.LegalAddressCity, null, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Area.LegalAddressStreet, null, new { @class = "form-control" })
+                    @{string str = Model.Area.ContactaName; }
+                    @Html.TextBox(str, null, new { @class = "form-control" })
+                    @*@Html.TextBoxFor(m => m.Area.SquareArea.ToString(), null, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Area.Latitude.ToString(), null, new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Area.Longitude.ToString(), null, new { @class = "form-control" })*@
+
+                </div>
+                <div class="panel-footer">
+                    <input type="submit" value="Сохранить" class="btn btn-primary" />
+                    @Html.ActionLink("Отмена", "Index", null, new { @class = "btn btn-default" })
+                </div>
             }
+            </div>
+            <div class="col-xs-5">
+                @{
+                    foreach (var item in Model.Photos)
+                    {
+                        string path = @item.PathToPhoto + @item.PhotoName + @item.PhotoExtension;
+                        <img src="@path" height="360" width="480" alt="Нужно добавить фото объекта."/>
+
+                        <div class="row" >
+                            <div style="float:left; margin-right:5px; ">
+                                @using (Html.BeginForm("PhotoDelete", "Admin"))
+                                {
+                                    @Html.Hidden("photoID", item.PhotoID)
+                                    @Html.Hidden("areaId", item.AreaID)
+                                    <input type="submit" class="btn btn-warning btn-xs" value="Удалить" />
+                                }
+                            </div>
+                            @using (Html.BeginForm("PhotoAdd", "Admin"))
+                            {
+                                @Html.Hidden("photoID", item.PhotoID)
+                                @Html.Hidden("areaId", item.AreaID)
+                                <input type="submit" class="btn btn-success btn-xs" value="Добавить" />
+                            }
+                            <hr />
+                        </div>
+                    }
+                }
+            </div>
         </div>
-        <div class="panel-footer">
-            <input type="submit" value="Сохранить" class="btn btn-primary" />
-            @Html.ActionLink("Отмена", "Index", null, new { @class = "btn btn-default" })
-        </div>
-    }
-</div>
+    </div>
 
 

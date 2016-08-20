@@ -10,5 +10,6 @@ namespace Domain.Abstract
     public interface IPhotoRepository
     {
         IEnumerable<Photo> Photos { get; }
+        void DeletePhoto(Photo photo);
     }
 }

@@ -5,6 +5,9 @@
             font: 22px Times New Roman;
             line-height: 1.8;
             color: #f5f6f7;
+
+           
+
         }
 
         .my-about {
@@ -99,9 +102,21 @@
         }
 
         .admin{
+            margin:7px;
             color:grey;
+            border:1px solid gray;
+            border-radius: 30px;
+
+            
         }
 
         .mymain {
             margin-top:50px;
+            padding:7px;
+
+            margin:1px;
+            color:grey;
+            border:1px solid gray;
+            border-radius: 30px;            
         }
+

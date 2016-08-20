@@ -49,7 +49,6 @@ D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Microsoft.A
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Microsoft.Owin.Security.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.xml
-D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\System.Web.Http.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\EntityFramework.xml
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI.Tests\bin\Debug\System.Web.Http.WebHost.xml

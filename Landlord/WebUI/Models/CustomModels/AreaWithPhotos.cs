@@ -10,7 +10,6 @@ namespace WebUI.Models.CustomModels
     {
         
         public AreaWithPhotos() { }
-       // public AreaWithPhotos(Area area, Photo photo) { }
 
         public Area Area { get; set; }
         public IEnumerable<Photo> Photos { get; set; }

@@ -84,8 +84,8 @@ namespace WebUI.Controllers.API
                     DeltaModel dModel = new DeltaModel
                     {
                         AreaId = item.AreaID,
-                        DeltaLat = item.Latitude - latit,
-                        DeltaLong = item.Longitude - longit
+                        DeltaLat = Math.Abs((decimal)(item.Latitude - latit)),
+                        DeltaLong = Math.Abs((decimal)(item.Longitude - longit))
                     };
 
                     listWithDelta.Add(dModel);
@@ -132,5 +132,15 @@ namespace WebUI.Controllers.API
             }
             return Json(nearlyAreaList);
         }
+
+        [HttpPost]
+        public bool LogIn(string name, string pass)
+        {
+
+            return true;
+        }
+
+
+
     }
 }

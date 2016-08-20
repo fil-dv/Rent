@@ -26,8 +26,6 @@ namespace WebUI.Controllers
         {
             List<AreaWithPhotos> areaPhotoList = new List<AreaWithPhotos>();
 
-            //API.GetCoordByAddressForAll();
-
             foreach (var area in _repoArea.Areas.Where(r => region == null || r.RentAreaAddressRegion == region).OrderBy(area => area.AreaID).Skip((page - 1) * pageSize).Take(pageSize))
             {
                 AreaWithPhotos awp = new AreaWithPhotos();
