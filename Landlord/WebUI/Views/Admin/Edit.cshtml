@@ -17,78 +17,118 @@
 
     <div class="row panel">
         <div class="col-xs-7">
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Edit", "Admin"))
             {
+               
+
                 <div class="panel-body">
+
+                    @Html.Hidden("AreaID", Model.Area.AreaID)
+                    @Html.Hidden("areaTypeID", Model.Area.AreaTypeID)
+                    @Html.Hidden("Rating", Model.Area.Rating)
+
+                    @Html.LabelFor(m => m.Area.AreaID)
+                    @Html.TextBoxFor(m => m.Area.AreaID, new { @class = "form-control" })
+
+                    @Html.LabelFor(m => m.Area.AreaTypeID)
+                    @Html.TextBoxFor(m => m.Area.AreaTypeID, new { @class = "form-control"})
+
                     
-                    @*@foreach (var property in ViewData.ModelMetadata.Properties)
-                    {
-                        if (property.PropertyName != "AreaID" && property.PropertyName != "AreaTypeID")
-                        {
-                            <div class="form-group">
 
-                                <label>@(property.DisplayName ?? property.PropertyName)</label>
-
-                                @if (property.PropertyName == "Description")
-                                {
-                                    @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
-                                }
-                                else
-                                {
-                                    @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
-                                }
-                                @Html.ValidationMessage(property.PropertyName)
-                            
-                            </div>
-                        }*@
-
+                    @Html.LabelFor(m=>m.Area.AreaDescription)
                     @Html.TextAreaFor(m => m.Area.AreaDescription, new { @class = "form-control", rows = 7 })  
-                    @Html.TextBoxFor(m => m.Area.ContactaName, new { @class = "form-control" })    
-                    @Html.TextBoxFor(m => m.Area.ContactaPhone1, new { @class = "form-control" })
-                    @Html.TextBoxFor(m => m.Area.ContactaPhone2, new { @class = "form-control" })
-                    @Html.TextBoxFor(m => m.Area.ContactaPhone3, null, new { @class = "form-control" })
-                    @Html.TextBoxFor(m => m.Area.LegalAddressRegion, null, new { @class = "form-control" })
-                    @Html.TextBoxFor(m => m.Area.LegalAddressCity, null, new { @class = "form-control" })
-                    @Html.TextBoxFor(m => m.Area.LegalAddressStreet, null, new { @class = "form-control" })
-                    @{string str = Model.Area.ContactaName; }
-                    @Html.TextBox(str, null, new { @class = "form-control" })
-                    @*@Html.TextBoxFor(m => m.Area.SquareArea.ToString(), null, new { @class = "form-control" })
-                    @Html.TextBoxFor(m => m.Area.Latitude.ToString(), null, new { @class = "form-control" })
-                    @Html.TextBoxFor(m => m.Area.Longitude.ToString(), null, new { @class = "form-control" })*@
 
-                </div>
-                <div class="panel-footer">
+                    @Html.LabelFor(m => m.Area.OwnerName)
+                    @Html.TextBoxFor(m => m.Area.OwnerName, new { @class = "form-control" })
+
+                    @Html.LabelFor(m => m.Area.ContactaName)
+                    @Html.TextBoxFor(m => m.Area.ContactaName, new { @class = "form-control" })   
+                    @Html.LabelFor(m => m.Area.ContactaPhone1)
+                    @Html.TextBoxFor(m => m.Area.ContactaPhone1, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Area.ContactaPhone2)
+                    @Html.TextBoxFor(m => m.Area.ContactaPhone2, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Area.ContactaPhone3)
+                    @Html.TextBoxFor(m => m.Area.ContactaPhone3, null, new { @class = "form-control" })
+                   
+                    
+                    @Html.LabelFor(m => m.Area.LegalAddressRegion)
+                    @Html.TextBoxFor(m => m.Area.LegalAddressRegion, new { @class = "form-control" })
+
+                    @Html.LabelFor(m => m.Area.LegalAddressCity)
+                    @Html.TextBoxFor(m => m.Area.LegalAddressCity, new { @class = "form-control" })
+
+                    @Html.LabelFor(m => m.Area.LegalAddressStreet)
+                    @Html.TextBoxFor(m => m.Area.LegalAddressStreet, new { @class = "form-control" })
+
+                    
+                    @Html.LabelFor(m => m.Area.RentAreaAddressRegion)
+                    @Html.TextBoxFor(m => m.Area.RentAreaAddressRegion, null, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Area.RentAreaAddressCity)
+                    @Html.TextBoxFor(m => m.Area.RentAreaAddressCity, null, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Area.RentAreaAddressStreet)
+                    @Html.TextBoxFor(m => m.Area.RentAreaAddressStreet, null, new { @class = "form-control" })                    
+                    @Html.LabelFor(m => m.Area.MonthPrice)
+                    @Html.TextBoxFor(m => m.Area.MonthPrice, new { @class = "form-control" })                    
+                    @Html.LabelFor(m => m.Area.SquareArea)
+                    @Html.TextBoxFor(m => m.Area.SquareArea, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Area.Latitude)
+                    @Html.TextBoxFor(m => m.Area.Latitude, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Area.Longitude)
+                    @Html.TextBoxFor(m => m.Area.Longitude, new { @class = "form-control" })
+
+                    @Html.LabelFor(m => m.Area.IsAvailable)
+                    @Html.TextBoxFor(m => m.Area.IsAvailable, new { @class = "form-control" })
+
+                    @Html.LabelFor(m => m.Area.Rating)
+                    @Html.TextBoxFor(m => m.Area.Rating, new { @class = "form-control"})
+                   
                     <input type="submit" value="Сохранить" class="btn btn-primary" />
                     @Html.ActionLink("Отмена", "Index", null, new { @class = "btn btn-default" })
+                    @*@Html.ActionLink("Получить координаты по адресу", "GetCoordByAdress", null, new { @class = "btn btn-success btn-md" })*@
+
+                    @*@using (Html.BeginForm("GetCoordByAdress", "Admin"))
+                    {
+                        @Html.Hidden("areaId", Model.Area.AreaID)
+                        <input type="submit" class="btn btn-success btn-md" value="Получить координаты по адресу" />
+                    }*@
                 </div>
             }
+            <div class="panel">                
+                
+                @using (Html.BeginForm("GetCoordByAdress", "Admin"))
+                {
+                    @Html.Hidden("areaId", Model.Area.AreaID)
+                    <input style="margin:10px;" type="submit" class="btn btn-success btn-md" value="Получить координаты по адресу" />
+                }
+                @using (Html.BeginForm("PhotoAdd", "Admin"))
+                {
+                    @*@Html.ActionLink("Добавить фото", "AddPhoto", null, new { @class = "btn btn-success btn-md" })*@
+                    @Html.Hidden("areaId", Model.Area.AreaID)
+                    <input style="margin-left:10px;" type="file" class = "btn btn-success btn-md" value="Добавить фото"/>
+                }
+                
+            </div>
+
             </div>
             <div class="col-xs-5">
                 @{
                     foreach (var item in Model.Photos)
                     {
                         string path = @item.PathToPhoto + @item.PhotoName + @item.PhotoExtension;
-                        <img src="@path" height="360" width="480" alt="Нужно добавить фото объекта."/>
+                        <img src="@path" height="360" width="480" alt="Фото объекта."/>
 
                         <div class="row" >
-                            <div style="float:left; margin-right:5px; ">
                                 @using (Html.BeginForm("PhotoDelete", "Admin"))
                                 {
                                     @Html.Hidden("photoID", item.PhotoID)
                                     @Html.Hidden("areaId", item.AreaID)
                                     <input type="submit" class="btn btn-warning btn-xs" value="Удалить" />
-                                }
-                            </div>
-                            @using (Html.BeginForm("PhotoAdd", "Admin"))
-                            {
-                                @Html.Hidden("photoID", item.PhotoID)
-                                @Html.Hidden("areaId", item.AreaID)
-                                <input type="submit" class="btn btn-success btn-xs" value="Добавить" />
-                            }
-                            <hr />
+                                }                               
+                                <hr />
                         </div>
                     }
                 }
+                
             </div>
         </div>
     </div>

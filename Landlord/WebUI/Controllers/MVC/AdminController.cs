@@ -54,8 +54,6 @@ namespace WebUI.Controllers
                 Photos = photos
             };
 
-            //ViewBag.Photos = photos;
-
             return View(model);
         }
 
@@ -96,7 +94,7 @@ namespace WebUI.Controllers
                         if (item.Longitude == null)
                             item.Longitude = System.Convert.ToDecimal(point.Longitude);
                         if (++counter > 30) break;
-                        //Console.WriteLine(String.Format("{0}) {1}\tширота - {2}\tдолгота - {3}", ++counter, address, item.Latitude, item.Longitude));
+                        
                         Thread.Sleep(2000);
                     }
                     catch (NullReferenceException)
@@ -127,11 +125,6 @@ namespace WebUI.Controllers
             TempData["message"] = String.Format("Получение координат объектов завершено.");
             return RedirectToAction("Index");
 
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //    Console.WriteLine(ex.InnerException.Message);
-            //}
         }
 
         [HttpPost]
@@ -141,6 +134,56 @@ namespace WebUI.Controllers
             _repoPhoto.DeletePhoto(photo);
 
             return RedirectToAction("Edit", new { areaID = areaId });
-        } 
+        }
+
+        [HttpPost]
+        public ActionResult GetCoordByAdress(int areaId)
+        {
+            // Task.Factory.StartNew(() => {
+
+            string address = String.Empty;
+            GoogleLocationService locationService;
+            MapPoint point;
+            Area area = _repoArea.Areas.Where(a => a.AreaID == areaId).ToArray()[0];
+
+            if (area != null)
+            {
+                address = area.RentAreaAddressRegion + " обл., " + area.RentAreaAddressCity + ", " + area.RentAreaAddressStreet;
+                locationService = new GoogleLocationService();
+                point = locationService.GetLatLongFromAddress(address);
+                if (point != null)
+                {
+                    area.Latitude = System.Convert.ToDecimal(point.Latitude);
+                    area.Longitude = System.Convert.ToDecimal(point.Longitude);
+                }
+            }
+
+            try
+            {
+                _repoArea.SaveAreaChanges(area);
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                                                validationError.PropertyName,
+                                                validationError.ErrorMessage);
+                    }
+                }
+            }
+            //  });
+            return RedirectToAction("Edit", new { areaID = areaId });
+        }
+
+
+        [HttpPost]
+        public ActionResult PhotoAdd(int areaId, string path)
+        { 
+                return RedirectToAction("Edit", new { areaID = areaId });
+        }
+
     }
 }

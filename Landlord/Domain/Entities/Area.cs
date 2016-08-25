@@ -16,11 +16,13 @@ namespace Domain.Entities
     public class Area 
     {
         [Display(Name = "ID")]
-        [HiddenInput (DisplayValue = false)]
+        //[HiddenInput (DisplayValue = false)]
         [Editable(false)]
         public int AreaID { get; set; }
 
+        [Display(Name = "AreaID")]
         //[HiddenInput(DisplayValue = false)]
+        [Editable(false)]
         public int AreaTypeID { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -43,11 +45,11 @@ namespace Domain.Entities
         public string LegalAddressCity { get; set; }
         [Display(Name = "Юридический адрес владельца(улица, дом, [квартира])")]
         public string LegalAddressStreet { get; set; }
-        [Display(Name = "Адрес сдаваемой площади (область)")]
+        [Display(Name = "Область")]
         public string RentAreaAddressRegion { get; set; }
-        [Display(Name = "Адрес сдаваемой площади (город)")]
+        [Display(Name = "Город")]
         public string RentAreaAddressCity { get; set; }
-        [Display(Name = "Адрес сдаваемой площади (Улица, дом, [квартира])")]
+        [Display(Name = "Улица, дом, [квартира]")]
         public string RentAreaAddressStreet { get; set; }
         [Display(Name = "Площадь, м2")]
         public decimal SquareArea { get; set; }

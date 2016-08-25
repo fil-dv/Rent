@@ -2,12 +2,10 @@
 
  body {
             /*font: 20px Montserrat, sans-serif;*/
-            font: 22px Times New Roman;
+            /*font: 22px Times New Roman;*/
+            font: 22px Tahoma;
             line-height: 1.8;
             color: #f5f6f7;
-
-           
-
         }
 
         .my-about {
@@ -106,8 +104,6 @@
             color:grey;
             border:1px solid gray;
             border-radius: 30px;
-
-            
         }
 
         .mymain {
@@ -116,7 +112,7 @@
 
             margin:1px;
             color:grey;
-            border:1px solid gray;
-            border-radius: 30px;            
+            /*border:1px solid gray;*/
+            /*--border-radius: 30px;*/            
         }
 
