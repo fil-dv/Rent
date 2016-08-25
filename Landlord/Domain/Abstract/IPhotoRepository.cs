@@ -11,5 +11,6 @@ namespace Domain.Abstract
     {
         IEnumerable<Photo> Photos { get; }
         void DeletePhoto(Photo photo);
+        void SavePhotoChanges(Photo photo);
     }
 }

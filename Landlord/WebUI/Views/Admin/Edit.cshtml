@@ -100,11 +100,11 @@
                     @Html.Hidden("areaId", Model.Area.AreaID)
                     <input style="margin:10px;" type="submit" class="btn btn-success btn-md" value="Получить координаты по адресу" />
                 }
-                @using (Html.BeginForm("PhotoAdd", "Admin"))
+                @using (Html.BeginForm("UploadPhoto", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                    @*@Html.ActionLink("Добавить фото", "AddPhoto", null, new { @class = "btn btn-success btn-md" })*@
                     @Html.Hidden("areaId", Model.Area.AreaID)
-                    <input style="margin-left:10px;" type="file" class = "btn btn-success btn-md" value="Добавить фото"/>
+                    <input style="margin-left:10px;" type="file" name="file" class = "btn btn-default btn-md" value="Выбрать файл"/>
+                    <input style="margin-left:10px;" type="submit" class="btn btn-default btn-md" value="Загрузить фото" />
                 }
                 
             </div>

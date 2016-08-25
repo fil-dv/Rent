@@ -16,12 +16,12 @@ namespace Domain.Entities
     public class Area 
     {
         [Display(Name = "ID")]
-        //[HiddenInput (DisplayValue = false)]
+        [HiddenInput (DisplayValue = false)]
         [Editable(false)]
         public int AreaID { get; set; }
 
         [Display(Name = "AreaID")]
-        //[HiddenInput(DisplayValue = false)]
+        [HiddenInput(DisplayValue = false)]
         [Editable(false)]
         public int AreaTypeID { get; set; }
 
@@ -56,8 +56,10 @@ namespace Domain.Entities
         [Display(Name = "Стоимость аренды в месяц")]
         public decimal MonthPrice { get; set; }
         [Display(Name = "Доступность в настоящее время")]
+        [HiddenInput(DisplayValue = false)]
         public bool IsAvailable { get; set; }
         [Display(Name = "Популярность")]
+        [HiddenInput(DisplayValue = false)]
         public int Rating { get; set; }
         
         [DisplayFormat(DataFormatString = "{0:n10}", ApplyFormatInEditMode = true)]

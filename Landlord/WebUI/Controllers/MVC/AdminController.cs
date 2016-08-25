@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -180,9 +181,30 @@ namespace WebUI.Controllers
 
 
         [HttpPost]
-        public ActionResult PhotoAdd(int areaId, string path)
-        { 
-                return RedirectToAction("Edit", new { areaID = areaId });
+        public ActionResult UploadPhoto(int areaId)
+        {
+            if (Request.Files.Count > 0)
+            {
+                var file = Request.Files[0];
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("../Content/Images/"), fileName);
+                    file.SaveAs(path);
+
+                    string[] arr = fileName.Split('.');
+                    string pExt = "." + arr[arr.Length - 1];
+                    string pName = String.Empty;
+                    for (int i = 0; i < arr.Length - 1; ++i)
+                    {
+                        pName += arr[i];
+                    }
+                    Photo photo = new Photo { AreaID = areaId, PathToPhoto = @"..\Content\Images\", PhotoName = pName, PhotoExtension = pExt };
+                    _repoPhoto.SavePhotoChanges(photo);
+                }
+            }
+            return RedirectToAction("Edit", new { areaID = areaId });
         }
 
     }
