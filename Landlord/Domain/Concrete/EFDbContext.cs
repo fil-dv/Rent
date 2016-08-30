@@ -16,6 +16,7 @@ namespace Domain.Concrete
         public virtual DbSet<Area> Areas { get; set; }
         //public virtual DbSet<AreaType> AreaType { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<Pending> Pendings { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

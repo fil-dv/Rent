@@ -50,3 +50,4 @@ D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.Migration
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.csproj.GenerateResource.Cache
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.Migrations.AddAreaTypeTable.resources
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.Migrations.AddNewPrecision.resources
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.Migrations.AddPendings.resources

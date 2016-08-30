@@ -66,11 +66,13 @@ namespace WebUI.App_Start
         {
             kernel.Bind<IAreaRepository>().To<EFAreaRepository>();
             kernel.Bind<IPhotoRepository>().To<EFPhotoRepository>();
+            kernel.Bind<IPendingRepository>().To<EFPendingRepository>();
 
             EmailSettings emailSettings = new EmailSettings
             {
                 WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
             };
+
             kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", emailSettings);
         }
     }

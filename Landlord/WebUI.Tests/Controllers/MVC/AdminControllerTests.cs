@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using WebUI.Controllers;
 using WebUI.Models.CustomModels;
 using System.Linq;
+using System.Web.Http;
 
 namespace WebUI.Tests.Controllers.MVC
 {
@@ -49,16 +50,20 @@ namespace WebUI.Tests.Controllers.MVC
         public void Can_Edit()
         {
             Mock<IAreaRepository> mock = GetData();
+            Mock<IPhotoRepository> mockPhoto = new Mock<IPhotoRepository>();
+            mockPhoto.Setup(m => m.Photos).Returns(new List<Photo>
+            {
+                new Photo {AreaID = 1 }
+            });
+            AdminController controller = new AdminController(mock.Object, mockPhoto.Object);
 
-            AdminController controller = new AdminController(mock.Object, null);
+            AreaWithPhotos area1 = controller.Edit(1).ViewData.Model as AreaWithPhotos;
+            AreaWithPhotos area2 = controller.Edit(2).ViewData.Model as AreaWithPhotos;
+            AreaWithPhotos area3 = controller.Edit(3).ViewData.Model as AreaWithPhotos;
 
-            Area area1 = controller.Edit(1).ViewData.Model as Area;
-            Area area2 = controller.Edit(2).ViewData.Model as Area;
-            Area area3 = controller.Edit(3).ViewData.Model as Area;
-
-            Assert.AreEqual(area1.AreaID, 1);
-            Assert.AreEqual(area2.AreaID, 2);
-            Assert.AreEqual(area3.AreaID, 3);
+            Assert.AreEqual(area1.Area.AreaID, 1);
+            Assert.AreEqual(area2.Area.AreaID, 2);
+            Assert.AreEqual(area3.Area.AreaID, 3);
         }
     }
 }

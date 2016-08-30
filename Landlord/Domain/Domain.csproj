@@ -122,14 +122,17 @@
   <ItemGroup>
     <Compile Include="Abstract\IAreaRepository.cs" />
     <Compile Include="Abstract\IOrderProcessor.cs" />
+    <Compile Include="Abstract\IPendingRepository.cs" />
     <Compile Include="Abstract\IPhotoRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\OrderProcessors\EmailOrderProcessor.cs" />
     <Compile Include="Concrete\Repositories\EFAreaRepository.cs" />
+    <Compile Include="Concrete\Repositories\EFPendingRepository.cs" />
     <Compile Include="Concrete\Repositories\EFPhotoRepository.cs" />
     <Compile Include="Entities\Area.cs" />
     <Compile Include="Entities\AreaType.cs" />
     <Compile Include="Entities\Cart.cs" />
+    <Compile Include="Entities\Pending.cs" />
     <Compile Include="Entities\Photo.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
     <Compile Include="Identity\CreateRoleModel.cs" />
@@ -147,6 +150,10 @@
     <Compile Include="Migrations\201608011857349_AddNewPrecision.cs" />
     <Compile Include="Migrations\201608011857349_AddNewPrecision.Designer.cs">
       <DependentUpon>201608011857349_AddNewPrecision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608300637014_AddPendings.cs" />
+    <Compile Include="Migrations\201608300637014_AddPendings.Designer.cs">
+      <DependentUpon>201608300637014_AddPendings.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608011857349_AddNewPrecision.resx">
       <DependentUpon>201608011857349_AddNewPrecision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608300637014_AddPendings.resx">
+      <DependentUpon>201608300637014_AddPendings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

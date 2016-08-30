@@ -12,6 +12,7 @@ using System.Runtime.Serialization.Json;
 using Newtonsoft.Json;
 using System.Web.Http.Results;
 using System.Net;
+using System.Linq;
 
 namespace WebUI.Tests.Controllers.API
 {
@@ -44,22 +45,68 @@ namespace WebUI.Tests.Controllers.API
 
             CoordController controller = new CoordController(mockArea.Object);
 
-            JsonResult<List<NearlyAreaModel>> result1 = controller.GetNearlyAreas(1, 1);
-            JsonResult<List<NearlyAreaModel>> result2 = controller.GetNearlyAreas(2, 2);
-            JsonResult<List<NearlyAreaModel>> result3 = controller.GetNearlyAreas(9, 9);
+            string jsonString_1 = controller.GetNearlyAreas(1, 1);
+            List<NearlyAreaModel> result1 = JsonConvert.DeserializeObject<List<NearlyAreaModel>>(jsonString_1);
 
-            Assert.AreEqual(result1.Content[0].AreaId, 1);
-            Assert.AreEqual(result1.Content[1].AreaId, 2);
-            Assert.AreEqual(result1.Content[2].AreaId, 3);
+            string jsonString_2 = controller.GetNearlyAreas(2, 2);
+            List<NearlyAreaModel> result2 = JsonConvert.DeserializeObject<List<NearlyAreaModel>>(jsonString_2);
 
-            Assert.AreEqual(result2.Content[0].AreaId, 2);
-            Assert.AreEqual(result2.Content[1].AreaId, 1);
-            Assert.AreEqual(result2.Content[2].AreaId, 3);
+            string jsonString_3 = controller.GetNearlyAreas(9, 9);
+            List<NearlyAreaModel> result3 = JsonConvert.DeserializeObject<List<NearlyAreaModel>>(jsonString_3);
 
-            Assert.AreEqual(result3.Content[0].AreaId, 8);
-            Assert.AreEqual(result3.Content[1].AreaId, 9);
-            Assert.AreEqual(result3.Content[2].AreaId, 7);
+            Assert.AreEqual(result1[0].AreaId, 1);
+            Assert.AreEqual(result1[1].AreaId, 2);
+            Assert.AreEqual(result1[2].AreaId, 3);
 
+            Assert.AreEqual(result2[0].AreaId, 2);
+            Assert.AreEqual(result2[1].AreaId, 1);
+            Assert.AreEqual(result2[2].AreaId, 3);
+
+            Assert.AreEqual(result3[0].AreaId, 8);
+            Assert.AreEqual(result3[1].AreaId, 9);
+            Assert.AreEqual(result3[2].AreaId, 7);
+        }
+
+        [TestMethod]
+        public void Can_Add_New_Area()
+        {
+            Mock<IAreaRepository> mock = new Mock<IAreaRepository>();
+
+            mock.Setup(m => m.Areas).Returns(new List<Area>
+            {
+                new Area
+                {
+                    AreaID = 7777777,
+                    AreaTypeID = 1,
+                    AreaDescription = "newArea",
+                    OwnerName = "newOwnerName",
+                    ContactaName = "newContactaName",
+                    ContactaPhone1 = "newContactaPhone1",
+                    LegalAddressRegion = "newLegalAddressRegion",
+                    LegalAddressCity = "newLegalAddressCity",
+                    LegalAddressStreet = "newLegalAddressStreet",
+                    RentAreaAddressRegion = "newRentAreaAddressRegion",
+                    RentAreaAddressCity = "newRentAreaAddressCity",
+                    RentAreaAddressStreet = "newRentAreaAddressStreet",
+                    SquareArea = 333,
+                    MonthPrice = 777,
+                    IsAvailable = true,
+                    Rating = 0,
+                    Latitude = 100,
+                    Longitude = 300
+                }
+            });
+
+            CoordController controller = new CoordController(mock.Object);
+            Area area = (Area)(mock.Object.Areas.Where(m => m.AreaID == 7777777).ToList()[0]);
+            
+            string jsonStr = JsonConvert.SerializeObject(area);
+
+            Area result = controller.AddOrUpdateAreaForUnitTest(jsonStr);
+
+            Assert.AreEqual(result.AreaID, 7777777);
+            Assert.AreEqual(result.Latitude, 100);
+            Assert.AreEqual(result.RentAreaAddressStreet, "newRentAreaAddressStreet");
         }
     }
 }
