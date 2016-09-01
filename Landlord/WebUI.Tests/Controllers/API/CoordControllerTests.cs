@@ -43,7 +43,7 @@ namespace WebUI.Tests.Controllers.API
         {
             Mock<IAreaRepository> mockArea = GetData();
 
-            CoordController controller = new CoordController(mockArea.Object);
+            CoordController controller = new CoordController(mockArea.Object, null);
 
             string jsonString_1 = controller.GetNearlyAreas(1, 1);
             List<NearlyAreaModel> result1 = JsonConvert.DeserializeObject<List<NearlyAreaModel>>(jsonString_1);
@@ -68,45 +68,107 @@ namespace WebUI.Tests.Controllers.API
         }
 
         [TestMethod]
-        public void Can_Add_New_Area()
+        public void Can_Update_Area()
         {
-            Mock<IAreaRepository> mock = new Mock<IAreaRepository>();
+            NearlyAreaModel nAreaM = new NearlyAreaModel
+                                        {
+                                            AreaId = 7777777,
+                                            ContactaPhone1 = "newContactaPhone1",
+                                            Region = "newRentAreaAddressRegion",
+                                            City = "newRentAreaAddressCity",
+                                            Street = "newRentAreaAddressStreet",
+                                            Latitude = 100,
+                                            Longitude = 300
+                                        };
 
-            mock.Setup(m => m.Areas).Returns(new List<Area>
+            string jsonStr = JsonConvert.SerializeObject(nAreaM);
+
+            CoordController controller = new CoordController(null, null);
+
+            NearlyAreaModel result = controller.AddOrUpdateAreaForUnitTest(jsonStr);
+
+            Assert.AreEqual(result.AreaId, 7777777);
+            Assert.AreEqual(result.Latitude, 100);
+            Assert.AreEqual(result.Street, "newRentAreaAddressStreet");
+        }
+
+        [TestMethod]
+        public void Can_Get_ID_For_New_Area()
+        {
+            Mock<IAreaRepository> mockArea = GetData();
+
+            NearlyAreaModel nAreaM = new NearlyAreaModel
             {
-                new Area
-                {
-                    AreaID = 7777777,
-                    AreaTypeID = 1,
-                    AreaDescription = "newArea",
-                    OwnerName = "newOwnerName",
-                    ContactaName = "newContactaName",
-                    ContactaPhone1 = "newContactaPhone1",
-                    LegalAddressRegion = "newLegalAddressRegion",
-                    LegalAddressCity = "newLegalAddressCity",
-                    LegalAddressStreet = "newLegalAddressStreet",
-                    RentAreaAddressRegion = "newRentAreaAddressRegion",
-                    RentAreaAddressCity = "newRentAreaAddressCity",
-                    RentAreaAddressStreet = "newRentAreaAddressStreet",
-                    SquareArea = 333,
-                    MonthPrice = 777,
-                    IsAvailable = true,
-                    Rating = 0,
-                    Latitude = 100,
-                    Longitude = 300
-                }
+                ContactaPhone1 = "newContactaPhone1",
+                Region = "newRentAreaAddressRegion",
+                City = "newRentAreaAddressCity",
+                Street = "newRentAreaAddressStreet",
+                Latitude = 100,
+                Longitude = 300
+            };
+
+            string jsonStr = JsonConvert.SerializeObject(nAreaM);
+
+            CoordController controller = new CoordController(mockArea.Object, null);
+
+            int result = controller.GetNewAreaId(jsonStr);
+
+            Assert.AreEqual(result, 0);
+        }
+
+        [TestMethod]
+        public void Can_Set_Start_Time()
+        {
+            Mock<IPendingRepository> mock = new Mock<IPendingRepository>();
+
+            mock.Setup(m => m.Pendings).Returns(new List<Pending>
+            {
+                new Pending { PendingID = 1, AreaID = 1, Start = null, Stop = null },
+                new Pending { PendingID = 2, AreaID = 2, Start = null, Stop = null },
+                new Pending { PendingID = 3, AreaID = 3, Start = null, Stop = null }
             });
 
-            CoordController controller = new CoordController(mock.Object);
-            Area area = (Area)(mock.Object.Areas.Where(m => m.AreaID == 7777777).ToList()[0]);
-            
-            string jsonStr = JsonConvert.SerializeObject(area);
+            DateTime dt = DateTime.Now;
+            Pending pending = new Pending { AreaID = 4, Start = dt };
+            string jsonStr = JsonConvert.SerializeObject(pending);
 
-            Area result = controller.AddOrUpdateAreaForUnitTest(jsonStr);
+            CoordController controller = new CoordController(null, mock.Object);
 
-            Assert.AreEqual(result.AreaID, 7777777);
-            Assert.AreEqual(result.Latitude, 100);
-            Assert.AreEqual(result.RentAreaAddressStreet, "newRentAreaAddressStreet");
+            string result = controller.SetStartTime(jsonStr);
+            int res = Convert.ToInt32(result);
+
+            Assert.AreEqual(res, 0);
+            Assert.AreEqual(pending.Start, dt);
         }
+
+        [TestMethod]
+        public void Can_Set_Stop_Time()
+        {
+            Mock<IPendingRepository> mock = new Mock<IPendingRepository>();
+
+            DateTime startDate = DateTime.ParseExact("2016-09-01 11:40:52,531", "yyyy-MM-dd HH:mm:ss,fff",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+
+            mock.Setup(m => m.Pendings).Returns(new List<Pending>
+            {
+                new Pending { PendingID = 1, AreaID = 1, Start = startDate, Stop = null },
+                new Pending { PendingID = 2, AreaID = 2, Start = startDate, Stop = null },
+                new Pending { PendingID = 3, AreaID = 3, Start = startDate, Stop = null }
+            });
+
+            DateTime stopDate = DateTime.Now;
+            Pending pending = new Pending { PendingID = 3, AreaID = 3, Start = startDate, Stop = stopDate };
+            string jsonStr = JsonConvert.SerializeObject(pending);
+
+            CoordController controller = new CoordController(null, mock.Object);
+
+            controller.SetStopTime(jsonStr);
+
+            Assert.AreEqual(pending.PendingID, 3);
+            Assert.AreEqual(pending.AreaID, 3);
+            Assert.AreEqual(pending.Start, startDate);
+            Assert.AreEqual(pending.Stop, stopDate);
+        }
+
     }
 }

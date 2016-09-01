@@ -11,7 +11,8 @@ namespace WebUI.Models.API
         public string Region { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
-        public string Floor { get; set; }
-        public string Flat { get; set; }
+        public string ContactaPhone1 { get; set; }
+        public decimal? Latitude { get; set; }
+        public decimal? Longitude { get; set; }
     }
 }

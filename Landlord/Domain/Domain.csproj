@@ -155,6 +155,10 @@
     <Compile Include="Migrations\201608300637014_AddPendings.Designer.cs">
       <DependentUpon>201608300637014_AddPendings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609010819302_AddTimeNullable.cs" />
+    <Compile Include="Migrations\201609010819302_AddTimeNullable.Designer.cs">
+      <DependentUpon>201609010819302_AddTimeNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -176,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608300637014_AddPendings.resx">
       <DependentUpon>201608300637014_AddPendings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609010819302_AddTimeNullable.resx">
+      <DependentUpon>201609010819302_AddTimeNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

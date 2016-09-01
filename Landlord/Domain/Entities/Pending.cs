@@ -10,7 +10,7 @@ namespace Domain.Entities
     {
         public int PendingID { get; set; }
         public int AreaID { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime Stop { get; set; }
+        public DateTime? Start { get; set; }
+        public DateTime? Stop { get; set; }
     }
 }

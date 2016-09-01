@@ -51,3 +51,4 @@ D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.csproj.Ge
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.Migrations.AddAreaTypeTable.resources
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.Migrations.AddNewPrecision.resources
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.Migrations.AddPendings.resources
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\Domain\obj\Debug\Domain.Migrations.AddTimeNullable.resources

@@ -21,10 +21,13 @@ namespace WebUI.Controllers.API
     public class CoordController : ApiController
     {
         IAreaRepository _repoArea;
+        IPendingRepository _repoPending;
+            
 
-        public CoordController(IAreaRepository repository)
+        public CoordController(IAreaRepository repoArea, IPendingRepository repoPending)
         {
-            _repoArea = repository;
+            _repoArea = repoArea;
+            _repoPending = repoPending;
         }
 
         //public void GetCoordByAddressForAll()
@@ -183,8 +186,9 @@ namespace WebUI.Controllers.API
                         Region = area.RentAreaAddressRegion,
                         City = area.RentAreaAddressCity,
                         Street = area.RentAreaAddressStreet,
-                        Flat = "12345", ////////////////////////////
-                        Floor = ""      ////////////////////////////
+                        ContactaPhone1 = area.ContactaPhone1,
+                        Latitude = area.Latitude,
+                        Longitude = area.Longitude
                     };
 
                     nearlyAreaList.Add(nearlyAreaModel);
@@ -199,15 +203,70 @@ namespace WebUI.Controllers.API
         [HttpPost]
         public void AddOrUpdateArea(string jsonString)
         {
-            Area area = JsonConvert.DeserializeObject<Area>(jsonString);
+            NearlyAreaModel nAreaModel = JsonConvert.DeserializeObject<NearlyAreaModel>(jsonString);
+            Area area = GetAreaByNearlyModel(nAreaModel);
             _repoArea.SaveAreaChanges(area);
         }
 
-        [HttpPost]
-        public Area AddOrUpdateAreaForUnitTest(string jsonString)
+        private Area GetAreaByNearlyModel(NearlyAreaModel nAreaM)
         {
-            Area area = JsonConvert.DeserializeObject<Area>(jsonString);
+            Area area = new Area
+            {
+                AreaID = nAreaM.AreaId,
+                AreaTypeID  = 1,
+                AreaDescription = "",
+                OwnerName = "",
+                ContactaName = "", 
+                ContactaPhone1 =  nAreaM.ContactaPhone1,
+                ContactaPhone2 = "",
+                ContactaPhone3 = "",
+                LegalAddressRegion = "",
+                LegalAddressCity = "",
+                LegalAddressStreet = "",
+                RentAreaAddressRegion = nAreaM.Region,
+                RentAreaAddressCity = nAreaM.City, 
+                RentAreaAddressStreet =nAreaM.Street, 
+                SquareArea = 0,
+                MonthPrice = 0,
+                IsAvailable = false, 
+                Rating = 0, 
+                Latitude = nAreaM.Latitude, 
+                Longitude = nAreaM.Longitude
+            };
+            _repoArea.SaveAreaChanges(area);
             return area;
         }
+
+        [HttpPost]
+        public NearlyAreaModel AddOrUpdateAreaForUnitTest(string jsonString)
+        {
+            NearlyAreaModel nAreaModel = JsonConvert.DeserializeObject<NearlyAreaModel>(jsonString);
+            return nAreaModel;
+        }
+
+        public int GetNewAreaId(string jsonString)
+        {
+            NearlyAreaModel nAreaModel = JsonConvert.DeserializeObject<NearlyAreaModel>(jsonString);
+            Area area = GetAreaByNearlyModel(nAreaModel);
+            return area.AreaID;
+        }
+
+        [HttpPost]
+        public string SetStartTime(string jsonString)
+        {
+            Pending pending = JsonConvert.DeserializeObject<Pending>(jsonString);
+            _repoPending.SavePendingChanges(pending);
+            return pending.PendingID.ToString();
+        }
+
+        [HttpPost]
+        public void SetStopTime(string jsonString)
+        {
+            Pending pending = JsonConvert.DeserializeObject<Pending>(jsonString);
+            _repoPending.SavePendingChanges(pending);
+        }
+
+
+
     }
 }
