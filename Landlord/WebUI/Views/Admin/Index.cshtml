@@ -7,17 +7,22 @@
 }
 
 <div class="panel panel-default">
-    <div class="panel-heading">
-        @Html.ActionLink("Найти координаты", "GetCoordByAddressForAll")
-    </div>
+    @*<div class="panel-heading">*@
+        <div class="panel-heading" style="float:left;">
+            @Html.ActionLink("Найти координаты объектов по адресам", "GetCoordByAddressForAll")
+            <span style="margin-left:70px">Введите ID объкта:</span>
+            <input id="inputID" title="ID" type="number" class="input-sm" />
+            <input id="find" type="submit" class="input-sm" value="Редактировать" />
+        </div>
+    @*</div>*@
 
     <div class="panel-body">
         <table class="admin table table-striped table-condensed table-bordered">
             <tr>
                
-                <th class="text-center">
+                @*<th class="text-center">
                     @Html.DisplayNameFor(model => model.Area.AreaID)
-                </th>
+                </th>*@
                 <th class="text-center">
                     @Html.DisplayNameFor(model => model.Area.RentAreaAddressRegion)
                 </th>
@@ -45,9 +50,9 @@
             {
                 <tr>
                     
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.Area.AreaID)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.Area.RentAreaAddressRegion)
                     </td>
@@ -106,3 +111,20 @@
         @Html.ActionLink("Добавить", "Create", null, new { @class = "btn btn-default" })
     </div>
 </div>
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        $("#find").click(function () {
+            alert("inside!");
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/Edit/',
+                data: { id: id },
+                success: function (data) {}
+            });
+        });
+
+    </script>
+}*@   
