@@ -7,22 +7,32 @@
 }
 
 <div class="panel panel-default">
-    @*<div class="panel-heading">*@
-        <div class="panel-heading" style="float:left;">
-            @Html.ActionLink("Найти координаты объектов по адресам", "GetCoordByAddressForAll")
-            <span style="margin-left:70px">Введите ID объкта:</span>
-            <input id="inputID" title="ID" type="number" class="input-sm" />
-            <input id="find" type="submit" class="input-sm" value="Редактировать" />
-        </div>
-    @*</div>*@
+    <div class="panel-heading" >
+       
+            <div style="float:left">
+                @Html.ActionLink("Найти координаты объектов по адресам", "GetCoordByAddressForAll")
+            </div>
+            <div style="float:left">
+                @using (Html.BeginForm("Edit", "Admin", FormMethod.Get))
+                {
+                    <span style="margin-left:70px">ID объкта:</span>
+                    <input name="areaID" title="ID" type="number" class="input-sm" />
+                    <input id="find" type="submit" class="input-sm" value="Редактировать" />
+                }
+            </div>
+            <div>
+                <span style="margin-left:70px">@Html.ActionLink("Добавить новые фото", "AddNewPhotos")</span>
+            </div>
+       
+    </div>
 
     <div class="panel-body">
         <table class="admin table table-striped table-condensed table-bordered">
             <tr>
                
-                @*<th class="text-center">
+                <th class="text-center">
                     @Html.DisplayNameFor(model => model.Area.AreaID)
-                </th>*@
+                </th>
                 <th class="text-center">
                     @Html.DisplayNameFor(model => model.Area.RentAreaAddressRegion)
                 </th>
@@ -48,11 +58,10 @@
 
             @foreach (var item in Model)
             {
-                <tr>
-                    
-                    @*<td>
+                <tr>                    
+                    <td>
                         @Html.DisplayFor(modelItem => item.Area.AreaID)
-                    </td>*@
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Area.RentAreaAddressRegion)
                     </td>

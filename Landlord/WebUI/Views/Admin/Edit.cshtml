@@ -19,22 +19,19 @@
         <div class="col-xs-7">
             @using (Html.BeginForm("Edit", "Admin"))
             {
-               
-
                 <div class="panel-body">
 
-                    @Html.Hidden("AreaID", Model.Area.AreaID)
-                    @Html.Hidden("areaTypeID", Model.Area.AreaTypeID)
-                    @Html.Hidden("Rating", Model.Area.Rating)
+                    @Html.HiddenFor(m=>m.Area.AreaID)
+                    @Html.HiddenFor(m => m.Area.AreaTypeID)
+                    @Html.HiddenFor(m => m.Area.IsAvailable)
+                    @Html.HiddenFor(m => m.Area.Rating)
 
-                    @Html.LabelFor(m => m.Area.AreaID)
-                    @Html.TextBoxFor(m => m.Area.AreaID, new { @class = "form-control" })
+                    @*@Html.LabelFor(m => m.Area.AreaID)
+                    @Html.TextBoxFor(m => m.Area.AreaID, new { @class = "form-control" })*@
 
-                    @Html.LabelFor(m => m.Area.AreaTypeID)
-                    @Html.TextBoxFor(m => m.Area.AreaTypeID, new { @class = "form-control"})
-
-                    
-
+                    @*@Html.LabelFor(m => m.Area.AreaTypeID)
+                    @Html.TextBoxFor(m => m.Area.AreaTypeID, new { @class = "form-control"})*@
+                                        
                     @Html.LabelFor(m=>m.Area.AreaDescription)
                     @Html.TextAreaFor(m => m.Area.AreaDescription, new { @class = "form-control", rows = 7 })  
 
@@ -76,11 +73,11 @@
                     @Html.LabelFor(m => m.Area.Longitude)
                     @Html.TextBoxFor(m => m.Area.Longitude, new { @class = "form-control" })
 
-                    @Html.LabelFor(m => m.Area.IsAvailable)
+                    @*@Html.LabelFor(m => m.Area.IsAvailable)
                     @Html.TextBoxFor(m => m.Area.IsAvailable, new { @class = "form-control" })
 
                     @Html.LabelFor(m => m.Area.Rating)
-                    @Html.TextBoxFor(m => m.Area.Rating, new { @class = "form-control"})
+                    @Html.TextBoxFor(m => m.Area.Rating, new { @class = "form-control"})*@
                    
                     <input type="submit" value="Сохранить" class="btn btn-primary" />
                     @Html.ActionLink("Отмена", "Index", null, new { @class = "btn btn-default" })

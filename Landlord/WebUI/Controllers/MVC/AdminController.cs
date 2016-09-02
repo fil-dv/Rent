@@ -19,12 +19,13 @@ namespace WebUI.Controllers
     {
         IAreaRepository _repoArea;
         IPhotoRepository _repoPhoto;
+        IPendingRepository _repoPending;
 
-
-        public AdminController(IAreaRepository repoArea, IPhotoRepository repoPhoto)
+        public AdminController(IAreaRepository repoArea, IPhotoRepository repoPhoto, IPendingRepository repoPending)
         {
             _repoArea = repoArea;
             _repoPhoto = repoPhoto;
+            _repoPending = repoPending;
         }
 
 
@@ -205,6 +206,18 @@ namespace WebUI.Controllers
                 }
             }
             return RedirectToAction("Edit", new { areaID = areaId });
+        }
+
+        const string _dirPath = "../Content/NewPhotos";
+
+        public ActionResult AddNewPhotos()
+        {
+            foreach (Pending pending in _repoPending.Pendings)
+            {
+                Area area = _repoArea.Areas.Where(p => p.AreaID == pending.AreaID).ToList()[0];
+                //List <string> listFiles = Directory.GetFiles(_dirPath).Where(f=>
+            }
+            return RedirectToAction("Index");
         }
 
     }

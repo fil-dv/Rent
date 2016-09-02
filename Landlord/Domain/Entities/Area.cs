@@ -16,7 +16,7 @@ namespace Domain.Entities
     public class Area 
     {
         [Display(Name = "ID")]
-        [HiddenInput (DisplayValue = false)]
+        //[HiddenInput (DisplayValue = false)]
         [Editable(false)]
         public int AreaID { get; set; }
 
