@@ -17,6 +17,8 @@ namespace WebUI.Controllers
 {
     public class AdminController : Controller
     {
+        const string _dirPath = @"..\Content\NewPhotos";
+
         IAreaRepository _repoArea;
         IPhotoRepository _repoPhoto;
         IPendingRepository _repoPending;
@@ -208,14 +210,69 @@ namespace WebUI.Controllers
             return RedirectToAction("Edit", new { areaID = areaId });
         }
 
-        const string _dirPath = "../Content/NewPhotos";
+       
 
         public ActionResult AddNewPhotos()
         {
             foreach (Pending pending in _repoPending.Pendings)
             {
                 Area area = _repoArea.Areas.Where(p => p.AreaID == pending.AreaID).ToList()[0];
-                //List <string> listFiles = Directory.GetFiles(_dirPath).Where(f=>
+                if (!Directory.Exists(Server.MapPath(_dirPath)))
+                {
+                    Directory.CreateDirectory(Server.MapPath(_dirPath));
+                }
+                List<string> listFile = Directory.GetFiles(Server.MapPath(_dirPath)).ToList();
+                foreach (var item in listFile)
+                {                    
+                    FileInfo fi = new FileInfo(item);
+                    FileSystemInfo fsi = new FileInfo(item);
+
+                    if (fi.LastWriteTime >= pending.Start && fi.LastWriteTime <= pending.Stop)
+                    {
+                       
+                        var fileName = Path.GetFileName(fi.Name);
+                        var path = Path.Combine(Server.MapPath(@"..\Content\Images\"), fileName);
+
+                        bool isOk = false;
+
+                        string sourse = item;
+                        string dest = Server.MapPath(@"..\Content\Images\");
+
+                        do
+                        {
+                            if (!System.IO.File.Exists(path))
+                            {
+                                if (System.IO.File.Exists(sourse))
+                                {
+                                    if (System.IO.Directory.Exists(dest))
+                                    {
+                                        System.IO.File.Copy(sourse, path);
+                                        isOk = true;
+                                    }
+                                }                                
+                            }
+                            else
+                            {
+                                fileName = ("_" + fileName);
+                                path = Path.Combine(Server.MapPath(@"..\Content\Images\"), fileName);
+                            }
+                        }
+                        while (!isOk);
+
+                        string[] arr = fileName.Split('.');
+                        string pExt = "." + arr[arr.Length - 1];
+                        string pName = String.Empty;
+                        for (int i = 0; i < arr.Length - 1; ++i)
+                        {
+                            pName += arr[i];
+                        }
+
+                        Photo photo = new Photo { AreaID = pending.AreaID, PathToPhoto = @"..\Content\Images\", PhotoName = pName, PhotoExtension = pExt };
+                        _repoPhoto.SavePhotoChanges(photo);
+
+                        System.IO.File.Delete(item);
+                    }                    
+                }
             }
             return RedirectToAction("Index");
         }
