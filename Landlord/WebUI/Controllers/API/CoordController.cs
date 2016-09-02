@@ -254,8 +254,13 @@ namespace WebUI.Controllers.API
         [HttpPost]
         public string SetStartTime(string jsonString)
         {
+            Pending[] isInProgress = _repoPending.Pendings.Where(p => p.Stop == null).ToArray();
+            if (isInProgress.Length > 1)
+            {
+                return null;
+            }
             Pending pending = JsonConvert.DeserializeObject<Pending>(jsonString);
-            _repoPending.SavePendingChanges(pending);
+            _repoPending.AddOrUpdatePending(pending);
             return pending.PendingID.ToString();
         }
 
@@ -263,7 +268,7 @@ namespace WebUI.Controllers.API
         public void SetStopTime(string jsonString)
         {
             Pending pending = JsonConvert.DeserializeObject<Pending>(jsonString);
-            _repoPending.SavePendingChanges(pending);
+            _repoPending.AddOrUpdatePending(pending);
         }
 
 

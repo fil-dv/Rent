@@ -141,40 +141,40 @@ namespace WebUI.Tests.Controllers.API
             Assert.AreEqual(pending.Start, dt);
         }
 
-        //[TestMethod]
-        //public void Can_Not_Set_Start_Time_While_Another_In_Progress()
-        //{
-        //    Mock<IPendingRepository> mock = new Mock<IPendingRepository>();
+        [TestMethod]
+        public void Can_Not_Set_Start_Time_While_Another_In_Progress()
+        {
+            Mock<IPendingRepository> mock = new Mock<IPendingRepository>();
 
-        //    mock.Setup(m => m.Pendings).Returns(new List<Pending>
-        //    {
-        //        new Pending { PendingID = 1, AreaID = 1, Start = DateTime.Now, Stop = DateTime.Now },
-        //        new Pending { PendingID = 2, AreaID = 2, Start = DateTime.Now, Stop = DateTime.Now },
-        //        new Pending { PendingID = 3, AreaID = 3, Start = DateTime.Now, Stop = DateTime.Now }
-        //    });
+            mock.Setup(m => m.Pendings).Returns(new List<Pending>
+            {
+                new Pending { PendingID = 1, AreaID = 1, Start = DateTime.Now, Stop = DateTime.Now },
+                new Pending { PendingID = 2, AreaID = 2, Start = DateTime.Now, Stop = DateTime.Now },
+                new Pending { PendingID = 3, AreaID = 3, Start = DateTime.Now, Stop = DateTime.Now }
+            });
 
-        //    DateTime dt1 = DateTime.Now;
-        //    Pending pending1 = new Pending { PendingID = 4, AreaID = 4, Start = dt1 };
-        //    string jsonStr1 = JsonConvert.SerializeObject(pending1);
+            DateTime dt1 = DateTime.Now;
+            Pending pending1 = new Pending { PendingID = 4, AreaID = 4, Start = dt1 };
+            string jsonStr1 = JsonConvert.SerializeObject(pending1);
 
-        //    DateTime dt2 = DateTime.Now;
-        //    Pending pending2 = new Pending { AreaID = 4, Start = dt2 };
-        //    string jsonStr2 = JsonConvert.SerializeObject(pending1);
+            DateTime dt2 = DateTime.Now;
+            Pending pending2 = new Pending { AreaID = 4, Start = dt2 };
+            string jsonStr2 = JsonConvert.SerializeObject(pending1);
 
-        //    CoordController controller = new CoordController(null, mock.Object);
+            CoordController controller = new CoordController(null, mock.Object);
 
-        //    string result1 = controller.SetStartTime(jsonStr1);
-        //    int res1 = Convert.ToInt32(result1);
+            string result1 = controller.SetStartTime(jsonStr1);
+            int res1 = Convert.ToInt32(result1);
 
-        //    string result2 = controller.SetStartTime(jsonStr2);
+            string result2 = controller.SetStartTime(jsonStr2);
             
 
-        //    Assert.AreEqual(res1, 0);
-        //    Assert.AreEqual(pending1.Start, dt1);
+            Assert.AreEqual(res1, 0);
+            Assert.AreEqual(pending1.Start, dt1);
 
-        //    Assert.AreEqual(result2, null);
-        //    Assert.AreEqual(pending2.Start, null);
-        //}
+            Assert.AreEqual(result2, null);
+            Assert.AreEqual(pending2.Start, null);
+        }
 
         [TestMethod]
         public void Can_Set_Stop_Time()

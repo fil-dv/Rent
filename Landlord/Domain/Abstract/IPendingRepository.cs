@@ -11,6 +11,8 @@ namespace Domain.Abstract
     {
         IEnumerable<Pending> Pendings { get; }
         void DeletePending(Pending pending);
-        void SavePendingChanges(Pending pending);
+        void AddOrUpdatePending(Pending pending);
+        void SavePendingsChanges();
+       
     }
 }

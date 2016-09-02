@@ -24,12 +24,16 @@ namespace Domain.Concrete.Repositories
         public void DeletePending(Pending pending)
         {
             _context.Pendings.Remove(pending);
+        }
+
+        public void AddOrUpdatePending(Pending pending)
+        {
+            _context.Pendings.AddOrUpdate(pending);
             _context.SaveChanges();
         }
 
-        public void SavePendingChanges(Pending pending)
+        public void SavePendingsChanges()
         {
-            _context.Pendings.AddOrUpdate(pending);
             _context.SaveChanges();
         }
     }

@@ -216,6 +216,7 @@ namespace WebUI.Controllers
         {
             foreach (Pending pending in _repoPending.Pendings)
             {
+                bool isFilesFinded = false;
                 Area area = _repoArea.Areas.Where(p => p.AreaID == pending.AreaID).ToList()[0];
                 if (!Directory.Exists(Server.MapPath(_dirPath)))
                 {
@@ -229,7 +230,7 @@ namespace WebUI.Controllers
 
                     if (fi.LastWriteTime >= pending.Start && fi.LastWriteTime <= pending.Stop)
                     {
-                       
+                        isFilesFinded = true;
                         var fileName = Path.GetFileName(fi.Name);
                         var path = Path.Combine(Server.MapPath(@"..\Content\Images\"), fileName);
 
@@ -271,9 +272,14 @@ namespace WebUI.Controllers
                         _repoPhoto.SavePhotoChanges(photo);
 
                         System.IO.File.Delete(item);
+                        if (isFilesFinded == true)
+                        {
+                            _repoPending.DeletePending(pending);
+                        }
                     }                    
                 }
             }
+            _repoPending.SavePendingsChanges();
             return RedirectToAction("Index");
         }
 

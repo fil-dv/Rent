@@ -37,7 +37,7 @@ namespace WebUI.Tests.Controllers.MVC
             Mock<IAreaRepository> mockArea = GetData();
             Mock<IPhotoRepository> mockPhoto = new Mock<IPhotoRepository>();
             
-            AdminController controller = new AdminController(mockArea.Object, mockPhoto.Object);
+            AdminController controller = new AdminController(mockArea.Object, mockPhoto.Object, null);
             List<AreaWithPhotos> result = ((IEnumerable<AreaWithPhotos>)controller.Index().ViewData.Model).ToList();
 
             Assert.IsTrue(result.Count == 7);
@@ -55,7 +55,7 @@ namespace WebUI.Tests.Controllers.MVC
             {
                 new Photo {AreaID = 1 }
             });
-            AdminController controller = new AdminController(mock.Object, mockPhoto.Object);
+            AdminController controller = new AdminController(mock.Object, mockPhoto.Object, null);
 
             AreaWithPhotos area1 = controller.Edit(1).ViewData.Model as AreaWithPhotos;
             AreaWithPhotos area2 = controller.Edit(2).ViewData.Model as AreaWithPhotos;
