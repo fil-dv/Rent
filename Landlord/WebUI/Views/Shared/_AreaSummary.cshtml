@@ -33,7 +33,7 @@
                 foreach (var item in Model.Photos)
                 {
                     string path = @item.PathToPhoto + @item.PhotoName + @item.PhotoExtension;
-                    <img @*class="img-thumbnail"*@ src="@path" height="120" width="160" />
+                    <img style="margin-top:7px" src="@path" height="120" width="160" />
                 }
             }
         </div>

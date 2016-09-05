@@ -1,0 +1,76 @@
+﻿@model AreaWithPhotos
+
+<div class="well">
+    <div class="row">
+        <div id="adress">
+            
+            <div class="row">
+                @*<a href="#" style="color:gray;">@Model.Area.RentAreaAddressRegion обл., @Model.Area.RentAreaAddressCity, @Model.Area.RentAreaAddressStreet</a>
+                @{
+                    string adress = @Model.Area.RentAreaAddressRegion + "обл.," + @Model.Area.RentAreaAddressCity + "," + @Model.Area.RentAreaAddressStreet;
+                    @Html.ActionLink(adress, "ShowOnMap", "Map", new { Model.Area.AreaID }, new { @class = "btn btn-warning btn-xs" })
+                }*@
+
+                @*<span class="btn btn-default navbar-btn glyphicon glyphicon-shopping-cart">
+                </span>*@
+
+                <span>
+                    @using (Html.BeginForm("ShowOnMap", "Map", FormMethod.Get, new { @class = "glyphicon glyphicon-map-marker" }))
+                    {
+                        
+                        //string adress = @Model.Area.RentAreaAddressRegion + "обл.," + @Model.Area.RentAreaAddressCity + "," + @Model.Area.RentAreaAddressStreet;
+                        @Html.ActionLink(" " + @Model.Area.RentAreaAddressRegion + " обл., " + @Model.Area.RentAreaAddressCity + ", " + @Model.Area.RentAreaAddressStreet,
+                                    "ShowOnMap",
+                                    "Map",
+                                    new { Model.Area.AreaID },
+                                    new { @class = "lead" })
+                    }
+                </span>
+            </div>
+        </div>
+        <div>
+            @{
+                foreach (var item in Model.Photos)
+                {
+                    string path = @item.PathToPhoto + @item.PhotoName + @item.PhotoExtension;
+                    <img @*class="img-thumbnail"*@ src="@path" height="120" width="160" />
+                }
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-10">
+            <table>
+                <tr>
+                    <td class="pull-left">id объекта: @Model.Area.AreaID</td>
+                </tr>
+                <tr>
+                    <td class="pull-left">площадь: @Model.Area.SquareArea м2</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-xs-2">
+            <h3 id="price" class="pull-right label label-primary">
+                    @Model.Area.MonthPrice.ToString() грн/месяц                
+            </h3>
+            @using (Html.BeginForm("AddToCart", "Cart"))
+            {
+                <div class="pull-right">
+                    @Html.Hidden("areaID", Model.Area.AreaID)
+                    @*@Html.HiddenFor(x => x.Area.AreaID)*@
+                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                    <input type="submit" class="btn btn-success" value="Добавить в список Ваших интересов" />
+                </div>
+            }
+        </div>
+    </div>
+    
+    <div class="row text-left">
+        <p><i>&nbsp;&nbsp;&nbsp;@Model.Area.AreaDescription</i></p>
+    </div>
+</div>
+
+
+

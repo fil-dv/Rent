@@ -1,0 +1,19 @@
+﻿@using Domain.Entities
+@using WebUI.HtmlHelpers
+@using WebUI.Models.CustomModels
+
+@model AreaListViewModel
+
+@{
+    ViewBag.Title = "ILandLord";
+}
+
+
+@foreach (AreaWithPhotos area in Model.AreasWithPhotosList)
+{
+    @Html.Partial("_AreaSummary", area)    
+}
+
+<div class="pull-right">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("List", new { page = x, region = Model.CurrentRegion }))
+</div>

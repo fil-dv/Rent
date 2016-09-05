@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    
+    @*//////////////////////////////////////////////////////////////////////////////////////////////////
+    
+        GoogleMaps Web Api keys: 
+    MyBrowserApiKey 	3 авг. 2016 г. 	Браузер 	AIzaSyC8dms3PGSUNSNRK6x1flVI0pFmQzO0sSk
+    ILandLordApiKey 	3 авг. 2016 г. 	Сервер 	AIzaSyCNvpwmlrEbyWeWz-8Q6-uMBWxlUnYEoz0
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////*@
+    
+    <title>Аренда</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+ 
+    <script>
+
+       
+
+        $(document).ready(function () {
+            $(window).scrollTop($('#mainID').offset().top).scrollLeft($('#mainID').offset().left);
+        });
+       
+        $(function () {
+            $('a[href*=#]:not([href=#])').click(function () {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+
+
+        @*$(document).ready(function () {
+            $(window).scrollTop($(@ViewBag.Anchor).offset().top).scrollLeft($(@ViewBag.Anchor).offset().left);
+        });*@
+
+
+    </script>
+    
+</head>
+
+<body>
+    
+    <a style="visibility: hidden" ></a>
+    <!-- Navbar -->
+    <nav id="start" class="navbar navbar-default bg-4">
+        <div class="navbar navbar-inverse bg-4 navbar-fixed-top">
+            <div class="container bg-4">
+                <div class="navbar-header bg-4">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                  
+                </div>
+                <div class="navbar-collapse collapse bg-4">
+                    <ul class="nav navbar-nav">
+                        <li id='home'>@Html.ActionLink("Каталог", "List", "Areas")</li>
+                        <li><a class="scroll" href="#about">О проекте</a></li>
+                        <li><a class="scroll" href="#conditions">Условия</a></li>
+                        <li><a class="scroll" href="#contact">Контакты</a></li>
+                    </ul>
+                    
+                    @if (User.Identity.IsAuthenticated) {@Html.Action("Summary", "Cart")}                    
+                    @Html.Partial("_LoginPartial")                    
+
+                </div>            
+            </div>
+        </div>
+    </nav>
+
+    <!-- First Container -->
+    <div id ="mainID" class="container-fluid bg-3 text-center">
+    <div class="row panel">
+        
+        <div id="regions" class="col-xs-3">
+            @Html.Action("Menu", "Nav")
+        </div>
+        <div class="mymain col-xs-8">
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- Second Container -->
+    <div id="about" class="container-fluid bg-2 text-center my-about">
+        
+        <h3 class="margin">О проекте</h3>
+        <hr />
+        <h4 class="row">
+            
+            &nbsp;Данный проект является дипломной работой Филоненко Дмитрия, студента группы С-15-ПЗ-3
+            киевского филиала Компьютерной Академии "Шаг".<br /><br />
+
+            &nbsp;Название проекта - "ILandLord";<br /><br />
+
+            &nbsp;Цель проекта - расширение рынка предоставления услуг для
+            потенциального заказчика (риэлторской компании).<br /><br />
+
+            &nbsp;Проект представляет собой программный комплекс,
+            состоящий из нескольких компонентов:<br /><br />
+        </h4>
+        <ul class="row">
+            <li>
+                &nbsp;приложение, построенное на .NET технологии ASP.MVC,
+                предоставляющее пользовательский вэб-интерфейс;
+            </li>
+            <li>
+                &nbsp;приложение для OS Android, расширяющее возможности администрирования вэб сайта,
+                основной задачей которого является геолокационная привязка выездных фотосэтов к объектам, имеющимся в базе данных компании;
+            </li>
+            <li>
+                &nbsp;вэб сервис,  построенный на .NET технологии ASP.WebAPI, решающий задачи
+                совместного использования базы данных вышеуказанными приложениями.
+            </li>
+        </ul>
+
+        <p>
+            В работе использовались:
+            <ul class="row">
+                <li>
+                    &nbsp;OS: Windows, Android;
+                </li>
+                <li>
+                    &nbsp;programming languages: HTML, CSS, JavaScript, XML, Java, C#;
+                </li>
+                <li>
+                    &nbsp;technologies: Ajax, BootStrap, Entity Framework, Identity, Ninject, UnitTests(Moq framework);
+                </li>
+            </ul>
+        </p>
+
+        @*<hr />*@
+    </div>
+
+    <!-- Third Container (Grid) -->
+    
+    
+    <div id="conditions" class="container-fluid bg-1 text-center">
+
+        <h3 class="margin">Почему стоит выбрать услуги именно нашей компании? Разумные цены, многолетний опыт работы, быстрое оформлении документов.</h3>
+        <hr />
+        <img id='photoMain' src="../Content/Images/1005.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="300" height="250">
+        <hr />
+        <p class="text-left"><i>&nbsp;&nbsp;&nbsp;Для выполнения обязательств по предоставлению Арендатору помещений во временное пользование между Арендатором и Арендодателем заключается Договор аренды минимальным сроком от 3 мес. и более. В стоимость аренды помещений входит непосредственно цена аренды предоставленных площадей. Другие платежи : коммунальные (отопление, электроэнергия, водоснабжение), охрана, интернет, вывоз мусора, оплачиваются арендатором отдельно, согласно выставленного счета. Начисление арендной платы и оплата услуг, начинается со дня подписания акта приема-передачи Помещений. По соглашению с Арендодателем Арендатор вправе внести арендную плату за любой срок вперед в пределах срока действия Договора.</i></p>
+        <hr />
+    </div>
+    
+
+
+    <!-- Fourth Container (Grid) -->
+    <div id="contact" class="container-fluid bg-2 text-info">
+        
+        <h3 class="margin">Наши контакты</h3>
+        <hr />
+       
+        <h4 class="text-left">Юридический адрес: Украина, г. Киев, ул. Крещатик, 777, оф. 3.</h4>
+        <hr />
+
+        <h4>Телефоны службы поддержки:</h4>
+        <ul class="row text-left" style="list-style:none">
+            <li>
+                &nbsp; <img src="../content/Images/OperatorLogo/mts.png"/> +38(050)190-98-82;
+            </li>
+            <li>
+                &nbsp; <img src="../content/Images/OperatorLogo/ks.png" /> +38(067)218-85-81;
+            </li>
+            <li>
+                &nbsp;&nbsp;<img src="../content/Images/OperatorLogo/life.png" />&nbsp;+38(093)217-98-80;
+            </li>
+        </ul>
+        <hr />
+
+        <h4>Электронные адреса службы поддержки:</h4>
+        <ul class="row text-left">
+            <li>
+                &nbsp;admin@landlord.com;
+            </li>
+            <li>
+                &nbsp;support@landlord.com
+            </li>            
+        </ul>
+        <hr />
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="container-fluid bg-4 text-center">
+        <a class="scroll" href="#start"><p>Дипломная работа Филоненко Дмитрия. Компьютерная академия "Шаг", 2016</p></a>
+    </footer>
+
+    @RenderSection("scripts", required: false)
+    @*@RenderSection("script", false)*@ 
+   
+
+
+</body>
+</html>
+
+@*<script>
+
+        $( document ).ready(function() {
+            alert( "document loaded" );
+        });
+
+        $( window ).load(function() {
+            alert("Hello! I am an alert box!!");
+            window.location.href = @ViewBag.Anchor;
+        });
+</script>*@
+

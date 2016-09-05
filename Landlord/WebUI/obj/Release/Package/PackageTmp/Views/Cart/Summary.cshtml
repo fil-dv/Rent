@@ -1,0 +1,29 @@
+﻿@model Domain.Entities.Cart
+
+
+<div class="navbar-text navbar-right">
+    @*<b class="hidden-xs">Просмотреть</b>*@
+    @Model.Lines.Count()
+    ед. на сумму
+    @Model.CalculateTotalSum().ToString("#.## грн.")
+
+</div>
+
+<div class="navbar-right hidden-xs">
+    @Html.ActionLink(
+        " ",
+        "Index",
+        "Cart",
+        new { returnUrl = Request.Url.PathAndQuery },
+        new { @class = "btn btn-default navbar-btn glyphicon glyphicon-shopping-cart" }
+        
+    )
+</div>
+
+<div class="navbar-right visible-xs">
+    <a href=@Url.Action("Index", "Cart", new { returnUrl = Request.Url.PathAndQuery }) class="btn btn-default navbar-btn">
+        <span class="glyphicon glyphicon-shopping-cart"></span>
+    </a>
+</div>
+
+

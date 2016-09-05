@@ -52,7 +52,7 @@ namespace WebUI.App_Start
 
                 RegisterServices(kernel);
 
-                //Added for web.API resolver
+                // WebApiContrib.IoC.Ninject package  Added for web.API resolver
                 GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
 
                 return kernel;

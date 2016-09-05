@@ -1,0 +1,139 @@
+﻿@using WebUI.Models.CustomModels
+@model IEnumerable<WebUI.Models.CustomModels.AreaWithPhotos>
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading" >
+       
+            <div style="float:left; margin-left:30px">
+                @Html.ActionLink("Найти координаты объектов по адресам", "GetCoordByAddressForAll")
+            </div>
+            <div style="float:left">
+                @using (Html.BeginForm("Edit", "Admin", FormMethod.Get))
+                {
+                    <span style="margin-left:70px">ID объкта:</span>
+                    <input name="areaID" title="ID" type="number" class="input-sm" />
+                    <input id="find" type="submit" class="input-sm" value="Редактировать" />
+                }
+            </div>
+            <div>
+                <span style="margin-left:70px">@Html.ActionLink("Добавить новые фото", "AddNewPhotos")</span>
+            </div>
+       
+    </div>
+
+    <div class="panel-body">
+        <table class="admin table table-striped table-condensed table-bordered">
+            <tr>
+               
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Area.AreaID)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Area.RentAreaAddressRegion)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Area.RentAreaAddressCity)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Area.RentAreaAddressStreet)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Area.Latitude)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Area.Longitude)
+                </th>
+                <th class="text-center">
+                    Фото
+                </th>
+                <th colspan="2" class="text-center">
+                    Действия
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.AreaID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.RentAreaAddressRegion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.RentAreaAddressCity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.RentAreaAddressStreet)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.Latitude)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.Longitude)
+                    </td>
+
+                    <td>
+                        @{
+                            if (item.Photos.Count() > 0)
+                            {
+                                @*<a href="#" class="glyphicon glyphicon-shopping-cart"> @item.Photos.Count() шт.</a>*@
+                                <span> @item.Photos.Count() шт.</span>
+                            }
+                            else
+                            {
+                               <span>нет</span>
+                            }
+                        }
+                    </td>
+
+                    <td class="text-center">
+                        @using (Html.BeginForm("Edit", "Admin", FormMethod.Get))
+                        {
+                            @Html.ActionLink("Редактировать", "Edit", "Admin", new { item.Area.AreaID }, new { @class = "btn btn-warning btn-xs" })
+
+                            @*@Html.Hidden("areaID", item.Area.AreaID)
+                            <input type="submit" class="btn btn-warning btn-xs" value="Редактировать" />*@
+                        }                    
+                    </td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("Delete", "Admin"))
+                        {
+                            @Html.Hidden("areaID", item.Area.AreaID)
+                            <input type="submit" class="btn btn-danger btn-xs" value="Удалить" />
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <div class="panel-footer">
+        @Html.ActionLink("Добавить", "Create", null, new { @class = "btn btn-default" })
+    </div>
+</div>
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        $("#find").click(function () {
+            alert("inside!");
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/Edit/',
+                data: { id: id },
+                success: function (data) {}
+            });
+        });
+
+    </script>
+}*@   

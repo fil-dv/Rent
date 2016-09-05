@@ -1,0 +1,49 @@
+﻿@model WebUI.Models.CustomModels.CartViewModel
+
+@{
+    ViewBag.Title = "Список Ваших интересов:";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table id="cartTable" class="table">
+    <thead>
+        <tr>
+            <th>Адрес</th>
+            <th class="text-right">Цена, грн/мес.</th>            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+        {
+            <tr>
+                <td class="text-left">@line.Area.RentAreaAddressRegion обл., @line.Area.RentAreaAddressCity, @line.Area.RentAreaAddressStreet</td>
+                <td class="text-right">@line.Area.MonthPrice</td>
+                
+                <td>
+                    @using (@Html.BeginForm("RemoveFromCart", "Cart"))
+                    {
+                        @Html.Hidden("areaID", line.Area.AreaID)
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input class="btn btn-sm btn-warning" type="submit" value="Удалить" />
+                    }
+                </td>
+
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="text-right">Итого: </td>
+            <td class="text-right">@Model.Cart.CalculateTotalSum().ToString()</td>
+        </tr>
+    </tfoot>
+
+</table>
+
+<div class="text-center">
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Продолжить просмотр</a>
+    @Html.ActionLink("Оформить заявку", "CheckOut", null, new { @class = "btn btn-primary" })
+</div>
+
