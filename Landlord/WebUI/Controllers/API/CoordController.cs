@@ -14,7 +14,7 @@ using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Http.Results;
 using WebUI.Models.API;
-//using System.Web.Mvc;
+
 
 namespace WebUI.Controllers.API
 {
@@ -22,7 +22,9 @@ namespace WebUI.Controllers.API
     {
         IAreaRepository _repoArea;
         IPendingRepository _repoPending;
-            
+
+        public CoordController()
+        { }
 
         public CoordController(IAreaRepository repoArea, IPendingRepository repoPending)
         {
@@ -30,112 +32,17 @@ namespace WebUI.Controllers.API
             _repoPending = repoPending;
         }
 
-        //public void GetCoordByAddressForAll()
-        //{
-        //    IEnumerable<Area> list = _repoArea.Areas.Where(r => r.Latitude == null || r.Longitude == null);
-        //    string address = String.Empty;
-        //    GoogleLocationService locationService;
-        //    MapPoint point;
-        //    //int counter = 0;
 
-        //    foreach (Area item in list)
-        //    {
-        //        address = item.RentAreaAddressRegion + " обл., " + item.RentAreaAddressCity + ", " + item.RentAreaAddressStreet;
-        //        locationService = new GoogleLocationService();
-        //        point = locationService.GetLatLongFromAddress(address);
-        //        if (item.Latitude == null)
-        //            item.Latitude = System.Convert.ToDecimal(point.Latitude);
-        //        if (item.Longitude == null)
-        //            item.Longitude = System.Convert.ToDecimal(point.Longitude);
-        //        //Console.WriteLine(String.Format("{0}) {1}\tширота - {2}\tдолгота - {3}", ++counter, address, item.Latitude, item.Longitude));
-        //        Thread.Sleep(200);
-        //    }
+        [HttpGet]
+        public string Test(int latit, int longit)
+        {
+            //int res = x + y;
+            List<string> list = new List<string> { "one", "two", "three" };
+            string jsonStr = JsonConvert.SerializeObject(list);
+            return jsonStr;
+        }
 
-        //    try
-        //    {
-        //       // _repoArea.SaveChanges();
-        //    }
-        //    catch (DbEntityValidationException dbEx)
-        //    {
-        //        foreach (var validationErrors in dbEx.EntityValidationErrors)
-        //        {
-        //            foreach (var validationError in validationErrors.ValidationErrors)
-        //            {
-        //                Trace.TraceInformation("Property: {0} Error: {1}",
-        //                                        validationError.PropertyName,
-        //                                        validationError.ErrorMessage);
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //        Console.WriteLine(ex.InnerException.Message);
-        //    }
-        //}
-
-        //public JsonResult<List<NearlyAreaModel>> GetNearlyAreas(decimal? latit, decimal? longit)
-        //{
-        //    const int areasCount = 3;
-
-        //    List<DeltaModel> listWithDelta = new List<DeltaModel>();
-
-        //    foreach (Area item in _repoArea.Areas)
-        //    {
-        //        if(latit != null && longit != null && item.Latitude!= null && item.Longitude !=null)
-        //        {
-        //            DeltaModel dModel = new DeltaModel
-        //            {
-        //                AreaId = item.AreaID,
-        //                DeltaLat = Math.Abs((decimal)(item.Latitude - latit)),
-        //                DeltaLong = Math.Abs((decimal)(item.Longitude - longit))
-        //            };
-
-        //            listWithDelta.Add(dModel);
-        //        }               
-        //    }
-
-        //    List<NearlyAreaModel> nearlyAreaList = new List<NearlyAreaModel>();
-
-        //    for(int i = 0; i < areasCount; ++i)
-        //    {
-        //        decimal? minDeltaLat = listWithDelta.Min(d => d.DeltaLat);
-        //        decimal? minDeltaLong = listWithDelta.Min(d => d.DeltaLong);
-
-        //        DeltaModel deltaModel = new DeltaModel();
-
-        //        if (minDeltaLat < minDeltaLong)
-        //        {
-        //            deltaModel = listWithDelta.Find(d => d.DeltaLat == minDeltaLat);
-        //        }
-        //        else
-        //        {
-        //            deltaModel = listWithDelta.Find(d => d.DeltaLong == minDeltaLong);
-        //        }
-
-
-        //        if (deltaModel != null)
-        //        {
-        //            Area area = _repoArea.Areas.ToList().Find(a => a.AreaID == deltaModel.AreaId);
-
-        //            NearlyAreaModel nearlyAreaModel = new NearlyAreaModel
-        //            {
-        //                AreaId = area.AreaID,
-        //                Region = area.RentAreaAddressRegion,
-        //                City = area.RentAreaAddressCity,
-        //                Street = area.RentAreaAddressStreet,
-        //                Flat = "12345", ////////////////////////////
-        //                Floor = ""      ////////////////////////////
-        //            };
-
-        //            nearlyAreaList.Add(nearlyAreaModel);
-
-        //            listWithDelta.Remove(deltaModel);
-        //        }  
-        //    }
-        //    return Json(nearlyAreaList);
-        //}
-
+        [HttpGet]
         public string GetNearlyAreas(decimal? latit, decimal? longit)
         {
             const int areasCount = 3;
@@ -271,6 +178,8 @@ namespace WebUI.Controllers.API
             _repoPending.AddOrUpdatePending(pending);
         }
 
+
+      
 
 
     }
