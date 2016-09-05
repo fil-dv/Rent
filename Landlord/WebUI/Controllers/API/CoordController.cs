@@ -23,8 +23,7 @@ namespace WebUI.Controllers.API
         IAreaRepository _repoArea;
         IPendingRepository _repoPending;
 
-        public CoordController()
-        { }
+        // public CoordController() { }
 
         public CoordController(IAreaRepository repoArea, IPendingRepository repoPending)
         {
@@ -42,10 +41,18 @@ namespace WebUI.Controllers.API
             return jsonStr;
         }
 
+        void InitRepo()
+        {
+
+        }
+
         [HttpGet]
         public string GetNearlyAreas(decimal? latit, decimal? longit)
         {
             const int areasCount = 3;
+
+            InitRepo();
+            
 
             List<DeltaModel> listWithDelta = new List<DeltaModel>();
 

@@ -109,3 +109,4 @@ D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\GoogleMaps.LocationServ
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\Jmelosegui.Mvc.GoogleMap.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\GoogleMapsApi.dll
 D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\GoogleMapsApi.xml
+D:\Dima\!Шаг\Degree_work_Rent\Rent\Landlord\WebUI\bin\WebApiContrib.IoC.Ninject.dll

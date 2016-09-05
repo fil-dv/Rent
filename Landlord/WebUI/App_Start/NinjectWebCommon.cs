@@ -14,6 +14,8 @@ namespace WebUI.App_Start
     using Domain.Concrete.Repositories;
     using Domain.Concrete.OrderProcessors;
     using System.Configuration;
+    using System.Web.Http;
+    using WebApiContrib.IoC.Ninject;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -49,6 +51,10 @@ namespace WebUI.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+
+                //Added for web.API resolver
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
+
                 return kernel;
             }
             catch
