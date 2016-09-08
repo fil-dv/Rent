@@ -38,34 +38,34 @@ namespace WebUI.Tests.Controllers.API
             return mock;
         }
 
-        [TestMethod]
-        public void Can_Get_Nearly_List()
-        {
-            Mock<IAreaRepository> mockArea = GetData();
+        //[TestMethod]
+        //public void Can_Get_Nearly_List()
+        //{
+        //    Mock<IAreaRepository> mockArea = GetData();
 
-            CoordController controller = new CoordController(mockArea.Object, null);
+        //    CoordController controller = new CoordController(mockArea.Object, null);
 
-            string jsonString_1 = controller.GetNearlyAreas(1, 1);
-            List<NearlyAreaModel> result1 = JsonConvert.DeserializeObject<List<NearlyAreaModel>>(jsonString_1);
+        //    string jsonString_1 = controller.GetNearlyAreas(1, 1);
+        //    List<NearlyAreaModel> result1 = JsonConvert.DeserializeObject<List<NearlyAreaModel>>(jsonString_1);
 
-            string jsonString_2 = controller.GetNearlyAreas(2, 2);
-            List<NearlyAreaModel> result2 = JsonConvert.DeserializeObject<List<NearlyAreaModel>>(jsonString_2);
+        //    string jsonString_2 = controller.GetNearlyAreas(2, 2);
+        //    List<NearlyAreaModel> result2 = JsonConvert.DeserializeObject<List<NearlyAreaModel>>(jsonString_2);
 
-            string jsonString_3 = controller.GetNearlyAreas(9, 9);
-            List<NearlyAreaModel> result3 = JsonConvert.DeserializeObject<List<NearlyAreaModel>>(jsonString_3);
+        //    string jsonString_3 = controller.GetNearlyAreas(9, 9);
+        //    List<NearlyAreaModel> result3 = JsonConvert.DeserializeObject<List<NearlyAreaModel>>(jsonString_3);
 
-            Assert.AreEqual(result1[0].AreaId, 1);
-            Assert.AreEqual(result1[1].AreaId, 2);
-            Assert.AreEqual(result1[2].AreaId, 3);
+        //    Assert.AreEqual(result1[0].AreaId, 1);
+        //    Assert.AreEqual(result1[1].AreaId, 2);
+        //    Assert.AreEqual(result1[2].AreaId, 3);
 
-            Assert.AreEqual(result2[0].AreaId, 2);
-            Assert.AreEqual(result2[1].AreaId, 1);
-            Assert.AreEqual(result2[2].AreaId, 3);
+        //    Assert.AreEqual(result2[0].AreaId, 2);
+        //    Assert.AreEqual(result2[1].AreaId, 1);
+        //    Assert.AreEqual(result2[2].AreaId, 3);
 
-            Assert.AreEqual(result3[0].AreaId, 8);
-            Assert.AreEqual(result3[1].AreaId, 9);
-            Assert.AreEqual(result3[2].AreaId, 7);
-        }
+        //    Assert.AreEqual(result3[0].AreaId, 8);
+        //    Assert.AreEqual(result3[1].AreaId, 9);
+        //    Assert.AreEqual(result3[2].AreaId, 7);
+        //}
 
         [TestMethod]
         public void Can_Update_Area()

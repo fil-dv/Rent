@@ -15,10 +15,15 @@ namespace WebUI
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "AddOrUpdateArea",
+                routeTemplate: "api/{controller}/{action}/{areaStr}/{latit}/{longit}"
+                );
+
+            config.Routes.MapHttpRoute(
                 name: "GetNearlyAreas",
                 routeTemplate: "api/{controller}/{action}/{latit}/{longit}"//,
-                //defaults: new { x = 0, y = 0 }
-                );
+                                                                           // defaults: new { x = (string)null, y = (string)null }
+                );            
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

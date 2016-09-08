@@ -11,7 +11,7 @@
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
     <WebStackScaffolding_DbContextTypeFullName>Domain.Concrete.EFDbContext</WebStackScaffolding_DbContextTypeFullName>
     <IISExpressSSLPort>44306</IISExpressSSLPort>
-    <NameOfLastUsedPublishProfile>GeoProf</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>GeoNotJson2</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

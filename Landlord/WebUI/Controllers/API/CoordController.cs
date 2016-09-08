@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Web.Helpers;
 using System.Web.Http;
@@ -33,7 +34,7 @@ namespace WebUI.Controllers.API
 
 
         [HttpGet]
-        public string Test(int latit, int longit)
+        public string Test(string id)
         {
             //int res = x + y;
             List<string> list = new List<string> { "one", "two", "three" };
@@ -41,85 +42,142 @@ namespace WebUI.Controllers.API
             return jsonStr;
         }
 
-        void InitRepo()
-        {
 
-        }
+
+
+        /*http://www.geo.somee.com/api/Coord/GetNearlyAreas/50.52937692/30.79652152*/
 
         [HttpGet]
         public string GetNearlyAreas(decimal? latit, decimal? longit)
         {
-            const int areasCount = 3;
+            try
+            {
+               
+                const int areasCount = 3;
 
-            InitRepo();
+           
+                List<DeltaModel> listWithDelta = new List<DeltaModel>();
+
+                foreach (Area item in _repoArea.Areas)
+                {
+                    if (latit != null && longit != null && item.Latitude != null && item.Longitude != null)
+                    {
+                        DeltaModel dModel = new DeltaModel
+                        {
+                            AreaId = item.AreaID,
+                            DeltaLat = Math.Abs((decimal)(item.Latitude - latit)),
+                            DeltaLong = Math.Abs((decimal)(item.Longitude - longit))
+                        };
+
+                        listWithDelta.Add(dModel);
+                    }
+                }
+
+                List<NearlyAreaModel> nearlyAreaList = new List<NearlyAreaModel>();
+
+                for (int i = 0; i < areasCount; ++i)
+                {
+                    decimal? minDeltaLat = listWithDelta.Min(d => d.DeltaLat);
+                    decimal? minDeltaLong = listWithDelta.Min(d => d.DeltaLong);
+
+                    DeltaModel deltaModel = new DeltaModel();
+
+                    if (minDeltaLat < minDeltaLong)
+                    {
+                        deltaModel = listWithDelta.Find(d => d.DeltaLat == minDeltaLat);
+                    }
+                    else
+                    {
+                        deltaModel = listWithDelta.Find(d => d.DeltaLong == minDeltaLong);
+                    }
+
+
+                    if (deltaModel != null)
+                    {
+                        Area area = _repoArea.Areas.ToList().Find(a => a.AreaID == deltaModel.AreaId);
+
+                        NearlyAreaModel nearlyAreaModel = new NearlyAreaModel
+                        {
+                            AreaId = area.AreaID,
+                            Region = area.RentAreaAddressRegion,
+                            City = area.RentAreaAddressCity,
+                            Street = area.RentAreaAddressStreet,
+                            ContactaPhone1 = area.ContactaPhone1,
+                            Latitude = area.Latitude,
+                            Longitude = area.Longitude
+                        };
+
+                        nearlyAreaList.Add(nearlyAreaModel);
+
+                        listWithDelta.Remove(deltaModel);
+                    }
+                }
+                string jsonStr = JsonConvert.SerializeObject(nearlyAreaList);
+                //return jsonStr;
+                //return Json(nearlyAreaList);
+                //return JsonConvert.SerializeObject(nearlyAreaList);
+
+                StringBuilder ListBuilder = new StringBuilder();
+
+                foreach (var item in nearlyAreaList)
+                {
+                    ListBuilder.Append(item.AreaId);
+                    ListBuilder.Append(":");
+                    ListBuilder.Append(item.ContactaPhone1);
+                    ListBuilder.Append(":");
+                    ListBuilder.Append(item.Region);
+                    ListBuilder.Append(":");
+                    ListBuilder.Append(item.City);
+                    ListBuilder.Append(":");
+                    ListBuilder.Append(item.Street);
+                    ListBuilder.Append("#");
+                }
+
+                return ListBuilder.ToString();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
             
-
-            List<DeltaModel> listWithDelta = new List<DeltaModel>();
-
-            foreach (Area item in _repoArea.Areas)
-            {
-                if (latit != null && longit != null && item.Latitude != null && item.Longitude != null)
-                {
-                    DeltaModel dModel = new DeltaModel
-                    {
-                        AreaId = item.AreaID,
-                        DeltaLat = Math.Abs((decimal)(item.Latitude - latit)),
-                        DeltaLong = Math.Abs((decimal)(item.Longitude - longit))
-                    };
-
-                    listWithDelta.Add(dModel);
-                }
-            }
-
-            List<NearlyAreaModel> nearlyAreaList = new List<NearlyAreaModel>();
-
-            for (int i = 0; i < areasCount; ++i)
-            {
-                decimal? minDeltaLat = listWithDelta.Min(d => d.DeltaLat);
-                decimal? minDeltaLong = listWithDelta.Min(d => d.DeltaLong);
-
-                DeltaModel deltaModel = new DeltaModel();
-
-                if (minDeltaLat < minDeltaLong)
-                {
-                    deltaModel = listWithDelta.Find(d => d.DeltaLat == minDeltaLat);
-                }
-                else
-                {
-                    deltaModel = listWithDelta.Find(d => d.DeltaLong == minDeltaLong);
-                }
-
-
-                if (deltaModel != null)
-                {
-                    Area area = _repoArea.Areas.ToList().Find(a => a.AreaID == deltaModel.AreaId);
-
-                    NearlyAreaModel nearlyAreaModel = new NearlyAreaModel
-                    {
-                        AreaId = area.AreaID,
-                        Region = area.RentAreaAddressRegion,
-                        City = area.RentAreaAddressCity,
-                        Street = area.RentAreaAddressStreet,
-                        ContactaPhone1 = area.ContactaPhone1,
-                        Latitude = area.Latitude,
-                        Longitude = area.Longitude
-                    };
-
-                    nearlyAreaList.Add(nearlyAreaModel);
-
-                    listWithDelta.Remove(deltaModel);
-                }
-            }
-            string jsonStr = JsonConvert.SerializeObject(nearlyAreaList);
-            return jsonStr;
         }
 
-        [HttpPost]
-        public void AddOrUpdateArea(string jsonString)
+        [HttpGet]
+        public string AddOrUpdateArea(string areaStr, decimal? latit, decimal? longit)
         {
-            NearlyAreaModel nAreaModel = JsonConvert.DeserializeObject<NearlyAreaModel>(jsonString);
-            Area area = GetAreaByNearlyModel(nAreaModel);
-            _repoArea.SaveAreaChanges(area);
+            try
+            {
+                string[] arr = areaStr.Split('!'); //0!Киевская!Бровары!ул. Воссоединения д. 11, кв. 148!0501909882/50.5090258/30.7827258/
+
+                int AreaId = Convert.ToInt32(arr[0]);
+                string Region = arr[1];
+                string City = arr[2];
+                string Street = arr[3];
+                string ContactaPhone1 = arr[4];
+                decimal? Latitude = latit; //null; //(decimal?)Convert.ToDecimal(arr[5]);
+                decimal? Longitude = longit; //(decimal?)Convert.ToDecimal(arr[6]);
+
+
+                //NearlyAreaModel nAreaModel = JsonConvert.DeserializeObject<NearlyAreaModel>(areaStr);
+                
+                NearlyAreaModel nAreaModel = new NearlyAreaModel
+                {
+                    AreaId = Convert.ToInt32(arr[0]),
+                    Region = arr[1],
+                    City = arr[2],
+                    Street = arr[3],
+                    ContactaPhone1 = arr[4],
+                    Latitude = latit, // (decimal?)Convert.ToDecimal(arr[5]),
+                    Longitude = longit //(decimal?)Convert.ToDecimal(arr[6]),
+                };
+                Area area = GetAreaByNearlyModel(nAreaModel);
+                _repoArea.SaveAreaChanges(area);
+                return Convert.ToString(area.AreaID);
+            }
+            catch (Exception)
+            {
+                return "false";
+            } 
         }
 
         private Area GetAreaByNearlyModel(NearlyAreaModel nAreaM)
