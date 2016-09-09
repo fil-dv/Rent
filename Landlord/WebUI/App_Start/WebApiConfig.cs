@@ -14,16 +14,21 @@ namespace WebUI
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            //config.Routes.MapHttpRoute(
+            //    name: "SetStartTime",
+            //    routeTemplate: "api/{controller}/{action}/{areaId}/{startTime}"
+            //    );
+
+            config.Routes.MapHttpRoute(
+              name: "GetNearlyAreas",
+              routeTemplate: "api/{controller}/{action}/{latit}/{longit}"//,
+                                                                         // defaults: new { x = (string)null, y = (string)null }
+              );
+
             config.Routes.MapHttpRoute(
                 name: "AddOrUpdateArea",
                 routeTemplate: "api/{controller}/{action}/{areaStr}/{latit}/{longit}"
                 );
-
-            config.Routes.MapHttpRoute(
-                name: "GetNearlyAreas",
-                routeTemplate: "api/{controller}/{action}/{latit}/{longit}"//,
-                                                                           // defaults: new { x = (string)null, y = (string)null }
-                );            
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

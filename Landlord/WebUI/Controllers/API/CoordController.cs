@@ -24,7 +24,6 @@ namespace WebUI.Controllers.API
         IAreaRepository _repoArea;
         IPendingRepository _repoPending;
 
-        // public CoordController() { }
 
         public CoordController(IAreaRepository repoArea, IPendingRepository repoPending)
         {
@@ -33,18 +32,16 @@ namespace WebUI.Controllers.API
         }
 
 
-        [HttpGet]
-        public string Test(string id)
-        {
-            //int res = x + y;
-            List<string> list = new List<string> { "one", "two", "three" };
-            string jsonStr = JsonConvert.SerializeObject(list);
-            return jsonStr;
-        }
+        //[HttpGet]
+        //public string Test(string id)
+        //{
+        //    //int res = x + y;
+        //    List<string> list = new List<string> { "one", "two", "three" };
+        //    string jsonStr = JsonConvert.SerializeObject(list);
+        //    return jsonStr;
+        //}
 
-
-
-
+            
         /*http://www.geo.somee.com/api/Coord/GetNearlyAreas/50.52937692/30.79652152*/
 
         [HttpGet]
@@ -113,9 +110,7 @@ namespace WebUI.Controllers.API
                     }
                 }
                 string jsonStr = JsonConvert.SerializeObject(nearlyAreaList);
-                //return jsonStr;
-                //return Json(nearlyAreaList);
-                //return JsonConvert.SerializeObject(nearlyAreaList);
+
 
                 StringBuilder ListBuilder = new StringBuilder();
 
@@ -167,7 +162,7 @@ namespace WebUI.Controllers.API
                     City = arr[2],
                     Street = arr[3],
                     ContactaPhone1 = arr[4],
-                    Latitude = latit, // (decimal?)Convert.ToDecimal(arr[5]),
+                    Latitude = latit,  // (decimal?)Convert.ToDecimal(arr[5]),
                     Longitude = longit //(decimal?)Convert.ToDecimal(arr[6]),
                 };
                 Area area = GetAreaByNearlyModel(nAreaModel);
@@ -216,24 +211,44 @@ namespace WebUI.Controllers.API
             return nAreaModel;
         }
 
-        public int GetNewAreaId(string jsonString)
+        [HttpGet]
+        public string SetTime(string id) // id - ID of Area for Start time.  id - ID of Pending for Stop time 
         {
-            NearlyAreaModel nAreaModel = JsonConvert.DeserializeObject<NearlyAreaModel>(jsonString);
-            Area area = GetAreaByNearlyModel(nAreaModel);
-            return area.AreaID;
-        }
-
-        [HttpPost]
-        public string SetStartTime(string jsonString)
-        {
-            Pending[] isInProgress = _repoPending.Pendings.Where(p => p.Stop == null).ToArray();
-            if (isInProgress.Length > 1)
+            try
             {
-                return null;
+                string idStr = id.Substring(0, id.Length - 1);
+                string Signstr = id.Substring(id.Length - 1);
+
+                int myId = Convert.ToInt32(idStr);
+
+                Pending[] isInProgress = _repoPending.Pendings.Where(p => p.Stop == null).ToArray();
+                
+                if (Signstr == "n")
+                {
+                    if (isInProgress.Length > 0)
+                    {
+                        return "busy";
+                    }
+                    Pending pending = new Pending { PendingID = 0, AreaID = myId, Start = DateTime.Now };
+                    _repoPending.AddOrUpdatePending(pending);
+                    return pending.PendingID.ToString();
+                }
+                else if (Signstr == "k")
+                {
+                    Pending pending = _repoPending.Pendings.Where(p => p.PendingID == myId).First();
+                    pending.Stop = DateTime.Now;
+                    _repoPending.AddOrUpdatePending(pending);
+                    return "ok";
+                }
+                else
+                {
+                    return "wrong key";
+                }
             }
-            Pending pending = JsonConvert.DeserializeObject<Pending>(jsonString);
-            _repoPending.AddOrUpdatePending(pending);
-            return pending.PendingID.ToString();
+            catch (Exception)
+            {
+                return "false";
+            }
         }
 
         [HttpPost]

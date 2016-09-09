@@ -293,6 +293,7 @@
     <None Include="Properties\PublishProfiles\GeoNotJson.pubxml" />
     <None Include="Properties\PublishProfiles\GeoNotJson1.pubxml" />
     <None Include="Properties\PublishProfiles\GeoNotJson2.pubxml" />
+    <None Include="Properties\PublishProfiles\GeoNotJson3.pubxml" />
     <None Include="Properties\PublishProfiles\GeoProf.pubxml" />
     <None Include="Properties\PublishProfiles\GeoProf0609.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
